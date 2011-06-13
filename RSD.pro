@@ -30,8 +30,7 @@ SOURCES += main.cpp
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
 
-OTHER_FILES += \
-    README
+OTHER_FILES +=
 
 
 TRANSLATIONS = RSD_en.ts RSD_fr.ts
