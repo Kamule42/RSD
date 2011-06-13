@@ -1,16 +1,23 @@
-import QtQuick 1.0
+import Qt 4.7
 
-Rectangle {
-    width: 360
-    height: 360
-    Text {
-        text: "Hello World"
-        anchors.centerIn: parent
-    }
-    MouseArea {
-        anchors.fill: parent
-        onClicked: {
-            Qt.quit();
+import "UI"
+import "JS/window.js" as Window
+
+Item{
+
+    width   : 1000;
+    height  : 800;
+
+    Rectangle {
+        id: background
+        anchors.fill: parent;
+        color : "grey"
+
+
+        Menu{
+            clip    : false
+            x       : parent.width*0.2
+            y       : 75
         }
     }
 }

@@ -32,3 +32,6 @@ qtcAddDeployment()
 
 OTHER_FILES += \
     README
+
+
+TRANSLATIONS = RSD_en.ts RSD_fr.ts
