@@ -27,13 +27,16 @@ symbian:TARGET.CAPABILITY += NetworkServices
 SOURCES += main.cpp \
     modules/graphic/graphic.cpp \
     modules/module.cpp \
-    engine.cpp
+    engine.cpp \
+    modules/game/game.cpp \
+    tools/singleton.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
 
-OTHER_FILES +=
+OTHER_FILES += \
+    license
 
 
 TRANSLATIONS = RSD_en.ts RSD_fr.ts
@@ -41,4 +44,6 @@ TRANSLATIONS = RSD_en.ts RSD_fr.ts
 HEADERS += \
     modules/graphic/graphic.hpp \
     modules/module.hpp \
-    engine.hpp
+    engine.hpp \
+    modules/game/game.hpp \
+    tools/singleton.hpp

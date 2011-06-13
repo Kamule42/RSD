@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // RSD
-// Copyright (C) %DATE% Benjamin Herbomez (benjamin.herbomez@gmail.com)
+// Copyright (C) 13/06/2011 Benjamin Herbomez (benjamin.herbomez@gmail.com)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -22,21 +22,49 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef ENGINE_HPP
-#define ENGINE_HPP
+#ifndef SINGLETON_HPP
+#define SINGLETON_HPP
 
-#include <QObject>
+#include <QMutex>
 
-class Engine : public QObject
+template <class T>
+class Singleton
 {
-    Q_OBJECT
-    public:
-        explicit Engine(QObject *parent = 0);
+public:
+    static T*  instance()
+    {
+        static QMutex mutex;
+        if (!m_Instance)
+        {
+            mutex.lock();
 
-    signals:
+            if (!m_Instance)
+                m_Instance = new Singleton;
 
-    public slots:
+            mutex.unlock();
+        }
 
+        return m_Instance;
+    }
+
+    static void drop()
+    {
+        static QMutex mutex;
+        mutex.lock();
+        delete m_Instance;
+        m_Instance = 0;
+        mutex.unlock();
+    }
+
+private:
+    Singleton() {}
+
+    Singleton(const Singleton &); // hide copy constructor
+    Singleton& operator=(const Singleton &); // hide assign op
+                                 // we leave just the declarations, so the compiler will warn us
+                                 // if we try to use those two functions by accident
+
+    static T* m_Instance;
 };
 
-#endif // ENGINE_HPP
+#endif // SINGLETON_HPP

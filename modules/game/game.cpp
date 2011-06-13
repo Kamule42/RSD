@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // RSD
-// Copyright (C) %DATE% Benjamin Herbomez (benjamin.herbomez@gmail.com)
+// Copyright (C) 13/06/2011 Benjamin Herbomez (benjamin.herbomez@gmail.com)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -22,21 +22,8 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef ENGINE_HPP
-#define ENGINE_HPP
+#include "game.hpp"
 
-#include <QObject>
-
-class Engine : public QObject
+Game::Game()
 {
-    Q_OBJECT
-    public:
-        explicit Engine(QObject *parent = 0);
-
-    signals:
-
-    public slots:
-
-};
-
-#endif // ENGINE_HPP
+}
