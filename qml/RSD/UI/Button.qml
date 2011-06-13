@@ -8,9 +8,9 @@ Rectangle {
 
     signal clicked
 
-    width: 150
-    height: 30
-    smooth: true
+    width   : 200
+    height  : 30
+    smooth  : true
 
     border {
         width: 1
