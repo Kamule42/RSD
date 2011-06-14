@@ -26,11 +26,14 @@
 #define GAME_HPP
 
 #include "../module.hpp"
+#include <QThread>
 
-class Game : public Module{
-    Q_OBJECT
-    public:
-        Game();
-};
+namespace game{
+    class Game : public Module, public QThread{
+        Q_OBJECT
+        public:
+            Game();
+    };
+}
 
 #endif // GAME_HPP

@@ -47,3 +47,6 @@ HEADERS += \
     engine.hpp \
     modules/game/game.hpp \
     tools/singleton.hpp
+
+RESOURCES += \
+    medias/GUI.qrc

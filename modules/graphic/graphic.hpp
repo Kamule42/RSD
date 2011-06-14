@@ -25,17 +25,27 @@
 #ifndef GRAPHIC_HPP
 #define GRAPHIC_HPP
 
+#include <QSplashScreen>
+#include <QResource>
+
 #include "../module.hpp"
 
-class Graphic : public Module{
-    Q_OBJECT
-public:
-    Graphic();
+namespace graph{
+    class Graphic : public Module{
+        Q_OBJECT
 
-    signals:
+        protected:
+            QSplashScreen *mSplash;
 
-    public slots:
+        public:
+            Graphic();
 
-};
+            signals:
+
+            public slots:
+
+    };
+
+}
 
 #endif // GRAPHIC_HPP

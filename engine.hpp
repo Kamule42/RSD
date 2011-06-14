@@ -27,11 +27,19 @@
 
 #include <QObject>
 
+#include "modules/graphic/graphic.hpp"
+#include "modules/game/game.hpp"
+
 class Engine : public QObject
 {
     Q_OBJECT
+    private:
+        graph::Graphic      *mModuleGraphic;
+        game::Game         *mModuleGame;
     public:
         explicit Engine(QObject *parent = 0);
+
+        void run();
 
     signals:
 

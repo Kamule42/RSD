@@ -25,12 +25,15 @@
 #ifndef MODULE_HPP
 #define MODULE_HPP
 
-#include <QThread>
+#include <QObject>
 
-class Module: public QThread{
+class Module : public QObject{
     Q_OBJECT
     public:
         Module();
+
+        virtual void init() = 0;
+        virtual void run() = 0;
 };
 
 #endif // MODULE_HPP

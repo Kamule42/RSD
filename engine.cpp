@@ -25,4 +25,11 @@
 #include "engine.hpp"
 
 Engine::Engine(QObject *parent) : QObject(parent){
+    this->mModuleGraphic = new graph::Graphic();
+    this->mModuleGame   = new game::Game();
+}
+
+
+void Engine::run(){
+    this->mModuleGraphic->run();
 }

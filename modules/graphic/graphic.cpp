@@ -24,6 +24,22 @@
 
 #include "graphic.hpp"
 
-Graphic::Graphic() : Module(){
+
+namespace graph{
+
+    Graphic::Graphic() : Module(){
+
+        // Q_INIT_RESOURCE(GUI);
+
+        QPixmap pixmap(":/splash/img.png");
+        this->mSplash = new QSplashScreen(pixmap);
+    }
+
+
+    void Graphic::run(){
+        while(true){
+
+        }
+    }
 
 }
