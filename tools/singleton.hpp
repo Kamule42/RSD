@@ -28,43 +28,47 @@
 #include <QMutex>
 
 template <class T>
-class Singleton
-{
-public:
-    static T*  instance()
-    {
-        static QMutex mutex;
-        if (!m_Instance)
-        {
+class Singleton{
+    public:
+        static T*  instance(){
+            static QMutex mutex;
+            if (!Singleton<T>::m_Instance){
+                mutex.lock();
+
+                if (!Singleton<T>::m_Instance)
+                   Singleton<T>:: m_Instance = new T;
+
+                mutex.unlock();
+            }
+
+            return (static_cast<T*>(Singleton<T>::m_Instance));
+        }
+
+        static void drop(){
+            static QMutex mutex;
             mutex.lock();
-
-            if (!m_Instance)
-                m_Instance = new Singleton;
-
+            delete Singleton<T>::m_Instance;
+            Singleton<T>::m_Instance = 0;
             mutex.unlock();
         }
 
-        return m_Instance;
-    }
+    protected:
+        Singleton() {};
+        ~Singleton(){
+                if(m_Instance != NULL)
+                        delete m_Instance;
+        };
 
-    static void drop()
-    {
-        static QMutex mutex;
-        mutex.lock();
-        delete m_Instance;
-        m_Instance = 0;
-        mutex.unlock();
-    }
+    private:
+        Singleton(const Singleton &); // hide copy constructor
+        Singleton& operator=(const Singleton &); // hide assign op
+                                     // we leave just the declarations, so the compiler will warn us
+                                     // if we try to use those two functions by accident
 
-private:
-    Singleton() {}
-
-    Singleton(const Singleton &); // hide copy constructor
-    Singleton& operator=(const Singleton &); // hide assign op
-                                 // we leave just the declarations, so the compiler will warn us
-                                 // if we try to use those two functions by accident
-
-    static T* m_Instance;
+        static T* m_Instance;
 };
+
+    template <typename T>
+    T* Singleton<T>::m_Instance = NULL;
 
 #endif // SINGLETON_HPP

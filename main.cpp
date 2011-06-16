@@ -22,17 +22,28 @@
 //
 ////////////////////////////////////////////////////////////
 
+#include "engine.hpp"
 #include <QtGui/QApplication>
+#include <QSplashScreen>
 #include "qmlapplicationviewer.h"
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char * argv[]){
     QApplication app(argc, argv);
+    QPixmap pixmap(":/splash/img.png");
+    QSplashScreen *mSplash = new QSplashScreen(pixmap);
+    mSplash->show();
+
+    Engine *engine = new Engine();
+    engine->run();
 
     QmlApplicationViewer viewer;
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
     viewer.setMainQmlFile(QLatin1String("qml/RSD/main.qml"));
     viewer.showExpanded();
+
+    mSplash->finish(&viewer);
+
+
 
     return app.exec();
 }

@@ -26,13 +26,25 @@
 #define GAME_HPP
 
 #include "../module.hpp"
-#include <QThread>
+#include "../../tools/singleton.hpp"
 
 namespace game{
-    class Game : public Module, public QThread{
+    class Game : public Module, public Singleton<Game>{
         Q_OBJECT
+
+        friend class Singleton<Game>;
+
+        protected :
+            bool isRun;
         public:
             Game();
+
+        public slots :
+            void stop();
+
+        protected :
+            virtual void init();
+            virtual void run();
     };
 }
 

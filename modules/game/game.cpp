@@ -24,6 +24,22 @@
 
 #include "game.hpp"
 
-Game::Game()
-{
+namespace game{
+    Game::Game() : Module(){
+    }
+
+    void Game::init(){
+
+    }
+
+    void Game::run(){
+        this->isRun = true;
+        while(this->isRun){
+
+        }
+    }
+
+    void Game::stop(){
+        this->isRun = false;
+    }
 }

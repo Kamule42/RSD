@@ -23,13 +23,16 @@
 ////////////////////////////////////////////////////////////
 
 #include "engine.hpp"
+#include "modules/game/game.hpp"
 
 Engine::Engine(QObject *parent) : QObject(parent){
-    this->mModuleGraphic = new graph::Graphic();
-    this->mModuleGame   = new game::Game();
+
 }
 
 
 void Engine::run(){
-    this->mModuleGraphic->run();
+    game::Game *game = game::Game::instance();
+    if(!game->isRunning())
+        game->start();
+
 }
