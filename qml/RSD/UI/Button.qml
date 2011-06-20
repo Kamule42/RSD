@@ -29,16 +29,25 @@ Rectangle {
     id: container
 
     property string text: "Button"
+    property int textSize: 10
 
     signal clicked
 
-    width   : 200
-    height  : 30
+    width   : 250
+    height  : textSize*1.5
     smooth  : true
 
     border {
         width: 1
         color: "black"
+    }
+
+    Text {
+        id: buttonLabel
+        text: container.text
+        anchors.centerIn: container
+        color: "white"
+        font.pixelSize: parent.textSize
     }
 
 
@@ -71,13 +80,7 @@ Rectangle {
         hoverEnabled: true
     }
 
-    Text {
-        id: buttonLabel
-        text: container.text
-        anchors.centerIn: container
-        color: "white"
-        font.pixelSize: 24
-    }
+
     states: [
         State {
             name: "over"

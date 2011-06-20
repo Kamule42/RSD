@@ -27,6 +27,7 @@ import QtQuick 1.0
 
 
 Text {
+    property int textSize : 42
 
     FontLoader {
         id: localFont
@@ -37,7 +38,7 @@ Text {
 
     font{
         family: localFont.name
-        pointSize: 42
+        pointSize: textSize
         capitalization: Font.Capitalize
     }
 }

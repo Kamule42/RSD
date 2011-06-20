@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // RSD
-// Copyright (C) %DATE% Benjamin Herbomez (benjamin.herbomez@gmail.com)
+// Copyright (C) 17/06/2011 Benjamin Herbomez (benjamin.herbomez@gmail.com)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -22,13 +22,14 @@
 //
 ////////////////////////////////////////////////////////////
 
-#include "module.hpp"
+#include "anetworkquery.hpp"
+#include "network.hpp"
+namespace nwk{
+    ANetworkQuery::ANetworkQuery() : QThread(){
 
-Module::Module() : QThread(){
-    this->setTerminationEnabled(false);
-}
+    }
 
-
-void Module::stop(){
-    this->isRun = false;
+    void ANetworkQuery::launch(){
+        Network::instance()->add(this);
+    }
 }

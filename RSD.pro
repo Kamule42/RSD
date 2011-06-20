@@ -27,7 +27,9 @@ symbian:TARGET.CAPABILITY += NetworkServices
 SOURCES += main.cpp \
     modules/module.cpp \
     engine.cpp \
-    modules/game/game.cpp
+    modules/game/game.cpp \
+    modules/network/network.cpp \
+    modules/network/anetworkquery.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -43,7 +45,9 @@ HEADERS += \
     modules/module.hpp \
     engine.hpp \
     modules/game/game.hpp \
-    tools/singleton.hpp
+    tools/singleton.hpp \
+    modules/network/network.hpp \
+    modules/network/anetworkquery.hpp
 
 RESOURCES += \
     medias/GUI.qrc

@@ -25,23 +25,36 @@
 import QtQuick 1.0
 import Qt 4.7
 
+import "JS/main.js" as Controler
+
 Column {
     spacing: 10
+    property int textSize: 42
 
     Button {
         id      : newGameButton
         text    : qsTr("Find game")
+        textSize: parent.textSize
         //onClicked: Logic.startNewGame()
     }
 
     Button{
         id      : manageArmyButton
         text    : qsTr("Manage army")
+        textSize: parent.textSize
+    }
+
+    Button {
+        id              : optionButton
+        text           : qsTr("Option")
+        textSize    : parent.textSize
+        onClicked  : Controler.showOption()
     }
 
     Button {
         id          : exitButton
         text        : qsTr("Exit")
+        textSize: parent.textSize
         onClicked   : Qt.quit()
     }
 }

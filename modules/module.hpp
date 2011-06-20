@@ -32,12 +32,17 @@ class Engine;
 class Module : public QThread{
     Q_OBJECT
 
+    protected :
+        bool isRun;
+
     public:
         Module();
 
+    public slots :
+        void stop();
+
     protected :
          virtual void init() = 0;
-
 
 };
 

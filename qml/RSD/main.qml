@@ -40,15 +40,22 @@ Item{
         Menu{
             id      : menu
             clip    : false
-            x       : parent.width*0.2
-            y       : 75
+
+            textSize: parent.height * 0.04
+
+            anchors.top           : title.bottom
+            anchors.topMargin : parent.height * 0.15
+
+            anchors.left           : parent.left
+            anchors.leftMargin : parent.width * 0.09
         }
 
         Title{
-            id      : title
-            anchors.top: parent.top
-            anchors.topMargin: 0
-            anchors.horizontalCenter: parent.horizontalCenter
+            id                                   : title
+            textSize                          : parent.height * 0.07
+            anchors.top                     : parent.top
+            anchors.topMargin           : 0
+            anchors.horizontalCenter  : parent.horizontalCenter
         }
     }
 }

@@ -24,6 +24,7 @@
 
 #include "engine.hpp"
 #include "modules/game/game.hpp"
+#include "modules/network/network.hpp"
 
 Engine::Engine(QObject *parent) : QObject(parent){
 
@@ -34,5 +35,9 @@ void Engine::run(){
     game::Game *game = game::Game::instance();
     if(!game->isRunning())
         game->start();
+
+    nwk::Network *network = nwk::Network::instance();
+    if(!network->isRunning())
+        network->start();
 
 }

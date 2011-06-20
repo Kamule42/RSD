@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // RSD
-// Copyright (C) %DATE% Benjamin Herbomez (benjamin.herbomez@gmail.com)
+// Copyright (C) 16/06/2011 Benjamin Herbomez (benjamin.herbomez@gmail.com)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -22,13 +22,38 @@
 //
 ////////////////////////////////////////////////////////////
 
-#include "module.hpp"
+#ifndef NETWORK_HPP
+#define NETWORK_HPP
 
-Module::Module() : QThread(){
-    this->setTerminationEnabled(false);
+#include <QList>
+#include "../module.hpp"
+#include "../../tools/singleton.hpp"
+
+
+namespace nwk{
+    class ANetworkQuery;
+
+    class Network : public Module, public Singleton<Network>{
+        Q_OBJECT
+
+        friend class Singleton<Network>;
+        friend class ANetworkQuery;
+
+        protected :
+            QList<ANetworkQuery*> mQuery;
+
+        public:
+           Network();
+
+        protected :
+           virtual void add(ANetworkQuery *q);
+           virtual void run();
+           virtual void init();
+
+        signals:
+
+        public slots:
+
+    };
 }
-
-
-void Module::stop(){
-    this->isRun = false;
-}
+#endif // NETWORK_HPP

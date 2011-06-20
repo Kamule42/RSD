@@ -26,10 +26,11 @@
 
 namespace game{
     Game::Game() : Module(){
+        this->init();
     }
 
     void Game::init(){
-
+        this->isRun = false;
     }
 
     void Game::run(){
@@ -39,7 +40,5 @@ namespace game{
         }
     }
 
-    void Game::stop(){
-        this->isRun = false;
-    }
+
 }

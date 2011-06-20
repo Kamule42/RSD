@@ -34,13 +34,9 @@ namespace game{
 
         friend class Singleton<Game>;
 
-        protected :
-            bool isRun;
+
         public:
             Game();
-
-        public slots :
-            void stop();
 
         protected :
             virtual void init();
