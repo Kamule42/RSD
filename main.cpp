@@ -38,7 +38,8 @@ int main(int argc, char * argv[]){
 
     QmlApplicationViewer viewer;
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
-    viewer.setMainQmlFile(QLatin1String("qml/RSD/main.qml"));
+    //viewer.setMainQmlFile(QLatin1String(":/qml/main.qml"));
+    viewer.setSource(QUrl("qrc:/qml/main.qml"));
     viewer.showExpanded();
 
     mSplash->finish(&viewer);

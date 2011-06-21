@@ -29,6 +29,11 @@
 namespace nwk{
     class ANetworkQuery : public QThread{
         Q_OBJECT
+
+        protected:
+            int nbSend;
+
+
         protected:
             ANetworkQuery();
 

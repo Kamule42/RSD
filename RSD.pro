@@ -52,4 +52,4 @@ HEADERS += \
 RESOURCES += \
     medias/GUI.qrc
 
-FORMS +=
+QT += network

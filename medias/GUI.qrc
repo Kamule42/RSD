@@ -2,4 +2,16 @@
     <qresource prefix="/splash">
         <file alias="img.png">GUI/splash/img.png</file>
     </qresource>
+    <qresource prefix="/qml">
+        <file alias="main.qml">GUI/qml/RSD/main.qml</file>
+    </qresource>
+    <qresource prefix="/qml/UI">
+        <file alias="Button.qml">GUI/qml/RSD/UI/Button.qml</file>
+        <file alias="DARK11__.ttf">GUI/qml/RSD/UI/DARK11__.ttf</file>
+        <file alias="Menu.qml">GUI/qml/RSD/UI/Menu.qml</file>
+        <file alias="Title.qml">GUI/qml/RSD/UI/Title.qml</file>
+    </qresource>
+    <qresource prefix="/qml/UI/JS">
+        <file alias="main.js">GUI/qml/RSD/UI/JS/main.js</file>
+    </qresource>
 </RCC>

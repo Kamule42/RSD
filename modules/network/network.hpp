@@ -26,6 +26,8 @@
 #define NETWORK_HPP
 
 #include <QList>
+#include <QTcpServer>
+
 #include "../module.hpp"
 #include "../../tools/singleton.hpp"
 
