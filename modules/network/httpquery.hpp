@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // RSD
-// Copyright (C) 17/06/2011 Benjamin Herbomez (benjamin.herbomez@gmail.com)
+// Copyright (C) 22/06/2011 Benjamin Herbomez (benjamin.herbomez@gmail.com)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -22,14 +22,39 @@
 //
 ////////////////////////////////////////////////////////////
 
+#ifndef HTTPQUERY_HPP
+#define HTTPQUERY_HPP
+
 #include "anetworkquery.hpp"
-#include "network.hpp"
+
+#include <QNetworkReply>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QUrl>
+#include <QString>
+
 namespace nwk{
-    ANetworkQuery::ANetworkQuery() : QObject(){
+    class HttpQuery : public ANetworkQuery{
+        Q_OBJECT
 
-    }
+        protected :
+            QUrl *mUrl;
+            QNetworkAccessManager *mAccess;
+            const QNetworkRequest *mRequest;
+            QNetworkReply *mReply;
 
-    void ANetworkQuery::launch(){
-        Network::instance()->add(this);
-    }
+        public:
+            HttpQuery(QString url);
+
+        signals:
+
+        public slots:
+            virtual void launch();
+
+        protected slots :
+                virtual void slotFinish();
+                virtual void slotProgress(qint64, qint64);
+    };
 }
+
+#endif // HTTPQUERY_HPP

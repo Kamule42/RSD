@@ -29,11 +29,12 @@ SOURCES += main.cpp \
     engine.cpp \
     modules/game/game.cpp \
     modules/network/network.cpp \
-    modules/network/anetworkquery.cpp
+    modules/network/anetworkquery.cpp \
+    modules/network/httpquery.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
-qtcAddDeployment()
+#qtcAddDeployment()
 
 OTHER_FILES += \
     license
@@ -47,7 +48,8 @@ HEADERS += \
     modules/game/game.hpp \
     tools/singleton.hpp \
     modules/network/network.hpp \
-    modules/network/anetworkquery.hpp
+    modules/network/anetworkquery.hpp \
+    modules/network/httpquery.hpp
 
 RESOURCES += \
     medias/GUI.qrc

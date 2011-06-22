@@ -27,19 +27,19 @@
 
 #include <QThread>
 namespace nwk{
-    class ANetworkQuery : public QThread{
+    class ANetworkQuery : public QObject{
         Q_OBJECT
-
-        protected:
-            int nbSend;
-
 
         protected:
             ANetworkQuery();
 
 
         public slots:
-            void launch();
+            virtual void launch();
+
+        signals :
+            void finish();
+            void progress(qint64, qint64);
     };
 }
 #endif // ANETWORKQUERY_HPP

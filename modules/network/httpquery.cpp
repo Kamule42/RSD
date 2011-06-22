@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // RSD
-// Copyright (C) 17/06/2011 Benjamin Herbomez (benjamin.herbomez@gmail.com)
+// Copyright (C) 22/06/2011 Benjamin Herbomez (benjamin.herbomez@gmail.com)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -22,14 +22,27 @@
 //
 ////////////////////////////////////////////////////////////
 
-#include "anetworkquery.hpp"
-#include "network.hpp"
-namespace nwk{
-    ANetworkQuery::ANetworkQuery() : QObject(){
+#include "httpquery.hpp"
 
+namespace nwk{
+    HttpQuery::HttpQuery(QString url) : ANetworkQuery(){
+        this->mUrl = new QUrl(url);
+        this->mAccess = new QNetworkAccessManager();
+        this->mRequest = new QNetworkRequest(*this->mUrl);
     }
 
-    void ANetworkQuery::launch(){
-        Network::instance()->add(this);
+
+    void HttpQuery::launch(){
+        this->mReply = this->mAccess->get(*this->mRequest);
+        connect(this->mReply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(slotProgress(qint64, qint64) ));
+        connect(this->mReply, SIGNAL(finished()), this, SLOT(slotFinish()));
+    }
+
+    void HttpQuery::slotFinish(){
+        emit finish();
+    }
+
+    void HttpQuery::slotProgress(qint64 i1, qint64 i2){
+        emit progress(i1,i2);
     }
 }

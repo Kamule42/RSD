@@ -43,8 +43,10 @@ namespace nwk{
             QTime t1 = QTime::currentTime();
             QList<ANetworkQuery*>::iterator it, end = this->mQuery.end();
 
-            for(it = this->mQuery.begin(); it != end; ++it)
-                (*it)->start();
+            for(it = this->mQuery.begin(); it != end; ++it){
+                (*it)->launch();
+                this->mQuery.removeFirst();
+            }
 
             int diff = t1.msecsTo(QTime::currentTime());
             std::cout << diff << std::endl;
