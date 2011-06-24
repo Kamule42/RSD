@@ -62,3 +62,5 @@ RESOURCES += \
     medias/GUI.qrc
 
 QT += network
+
+CONFIG+= console

@@ -27,6 +27,7 @@
 #include "modules/network/network.hpp"
 
 #include "modules/network/httpperiodquery.hpp"
+#include "modules/network/httpquery.hpp"
 
 Engine::Engine(QObject *parent) : QObject(parent){
 
@@ -34,6 +35,10 @@ Engine::Engine(QObject *parent) : QObject(parent){
 
 
 void Engine::run(){
+    nwk::HttpPeriodQuery *q = new nwk::HttpPeriodQuery("http://kamule.free.fr/RSD/index.php?action=ping",2);
+
+
+
     game::Game *game = game::Game::instance();
     if(!game->isRunning())
         game->start();
@@ -41,5 +46,7 @@ void Engine::run(){
     nwk::Network *network = nwk::Network::instance();
     if(!network->isRunning())
         network->start();
+
+    q->launch();
 
 }

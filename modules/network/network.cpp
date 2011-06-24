@@ -44,12 +44,12 @@ namespace nwk{
             QList<ANetworkQuery*>::iterator it, end = this->mQuery.end();
 
             for(it = this->mQuery.begin(); it != end; ++it){
-                (*it)->launch();
+                (*it)->launchPro();
                 this->mQuery.removeFirst();
             }
 
             int diff = t1.msecsTo(QTime::currentTime());
-            std::cout << diff << std::endl;
+            //std::cout << diff << std::endl;
             //this->sleep();
         }
     }

@@ -27,11 +27,15 @@
 #include <QSplashScreen>
 #include "qmlapplicationviewer.h"
 
+#include <iostream>
+
 int main(int argc, char * argv[]){
     QApplication app(argc, argv);
     QPixmap pixmap(":/splash/img.png");
     QSplashScreen *mSplash = new QSplashScreen(pixmap);
     mSplash->show();
+
+
 
     Engine *engine = new Engine();
     engine->run();

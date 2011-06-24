@@ -27,14 +27,15 @@
 
 namespace nwk{
 
-     HttpPeriodQuery::HttpPeriodQueryThread::HttpPeriodQueryThread(HttpPeriodQuery *obj, qint64 inter){
+   HttpPeriodQueryThread::HttpPeriodQueryThread(HttpPeriodQuery *obj, qint64 inter){
         this->mObject = obj;
         this->mInter = inter;
     }
 
-     void  HttpPeriodQuery::HttpPeriodQueryThread::run(){
+     void  HttpPeriodQueryThread::run(){
+         connect(this,SIGNAL(runObject()), this->mObject, SLOT(run()));
          while(this->isRunning()){
-             this->mObject->run();
+             emit runObject();
              this->sleep(this->mInter);
          }
      }
@@ -44,12 +45,14 @@ namespace nwk{
     }
 
     void HttpPeriodQuery::run(){
+        this->mAccess->moveToThread(QThread::currentThread());
+
         this->mReply = this->mAccess->get(*this->mRequest);
         QObject::connect(this->mReply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(slotProgress(qint64, qint64) ));
         QObject::connect(this->mReply, SIGNAL(finished()), this, SLOT(slotFinish()));
     }
 
-    void HttpPeriodQuery::launch(){
+    void HttpPeriodQuery::launchPro(){
         this->mThread->start();
     }
 }

@@ -24,6 +24,8 @@
 
 #include "httpquery.hpp"
 
+#include <QtDebug>
+
 namespace nwk{
     HttpQuery::HttpQuery(QString url) : ANetworkQuery(){
         this->mUrl = new QUrl(url);
@@ -38,7 +40,7 @@ namespace nwk{
     }
 
 
-    void HttpQuery::launch(){
+    void HttpQuery::launchPro(){
         this->mReply = this->mAccess->get(*this->mRequest);
         connect(this->mReply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(slotProgress(qint64, qint64) ));
         connect(this->mReply, SIGNAL(finished()), this, SLOT(slotFinish()));
@@ -46,6 +48,7 @@ namespace nwk{
 
     void HttpQuery::slotFinish(){
         this->mContent = this->mReply->readAll();
+        qDebug() << this->mContent;
         emit finish();
     }
 

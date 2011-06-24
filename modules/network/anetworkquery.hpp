@@ -25,10 +25,12 @@
 #ifndef ANETWORKQUERY_HPP
 #define ANETWORKQUERY_HPP
 
-#include <QThread>
+#include <QObject>
 namespace nwk{
     class ANetworkQuery : public QObject{
         Q_OBJECT
+
+        friend class Network;
 
         protected:
             ANetworkQuery();
@@ -36,6 +38,9 @@ namespace nwk{
 
         public slots:
             virtual void launch();
+
+        protected :
+            virtual void launchPro() = 0;
 
         signals :
             void finish();

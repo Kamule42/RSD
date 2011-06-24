@@ -53,7 +53,7 @@ namespace nwk{
         signals:
 
         public slots:
-            virtual void launch();
+            virtual void launchPro();
 
         protected slots :
                 virtual void slotFinish();

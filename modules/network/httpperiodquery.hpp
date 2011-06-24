@@ -29,29 +29,38 @@
 #include <QThread>
 
 namespace nwk{
+
+    class HttpPeriodQuery;
+
+    class HttpPeriodQueryThread : public QThread{
+        Q_OBJECT
+        protected :
+            HttpPeriodQuery *mObject;
+             qint64 mInter;
+        public :
+            HttpPeriodQueryThread(HttpPeriodQuery*, qint64);
+            virtual void run();
+
+        signals :
+            void runObject();
+    };
+
     class HttpPeriodQuery : public HttpQuery{
+        Q_OBJECT
+        friend class HttpPeriodQueryThread;
 
         protected:
-
-            class HttpPeriodQueryThread : public QThread{
-                protected :
-                    HttpPeriodQuery *mObject;
-                     qint64 mInter;
-                public :
-                    HttpPeriodQueryThread(HttpPeriodQuery*, qint64);
-                    virtual void run();
-            };
 
             HttpPeriodQueryThread *mThread;
 
         public:
             HttpPeriodQuery(QString, qint64);
 
-        protected :
+        protected slots:
             virtual void run();
 
         public slots:
-            virtual void launch();
+            virtual void launchPro();
     };
 }
 #endif // HTTPPERIODQUERY_HPP

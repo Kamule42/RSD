@@ -30,6 +30,7 @@ namespace nwk{
     }
 
     void ANetworkQuery::launch(){
-        Network::instance()->add(this);
+        //Network::instance()->add(this);
+        this->launchPro();
     }
 }
