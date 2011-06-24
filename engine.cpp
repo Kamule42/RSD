@@ -35,7 +35,7 @@ Engine::Engine(QObject *parent) : QObject(parent){
 
 
 void Engine::run(){
-    nwk::HttpPeriodQuery *q = new nwk::HttpPeriodQuery("http://kamule.free.fr/RSD/index.php?action=ping",2);
+    nwk::HttpPeriodQuery *q = new nwk::HttpPeriodQuery("http://kamule.free.fr/RSD/index.php?action=ping&n=anonymous",2);
 
 
 
