@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // RSD
-// Copyright (C) %DATE% Benjamin Herbomez (benjamin.herbomez@gmail.com)
+// Copyright (C) 23/06/2011 Benjamin Herbomez (benjamin.herbomez@gmail.com)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -22,24 +22,36 @@
 //
 ////////////////////////////////////////////////////////////
 
-#include "engine.hpp"
-#include "modules/game/game.hpp"
-#include "modules/network/network.hpp"
+#ifndef HTTPPERIODQUERY_HPP
+#define HTTPPERIODQUERY_HPP
 
-#include "modules/network/httpperiodquery.hpp"
+#include "httpquery.hpp"
+#include <QThread>
 
-Engine::Engine(QObject *parent) : QObject(parent){
+namespace nwk{
+    class HttpPeriodQuery : public HttpQuery{
 
+        protected:
+
+            class HttpPeriodQueryThread : public QThread{
+                protected :
+                    HttpPeriodQuery *mObject;
+                     qint64 mInter;
+                public :
+                    HttpPeriodQueryThread(HttpPeriodQuery*, qint64);
+                    virtual void run();
+            };
+
+            HttpPeriodQueryThread *mThread;
+
+        public:
+            HttpPeriodQuery(QString, qint64);
+
+        protected :
+            virtual void run();
+
+        public slots:
+            virtual void launch();
+    };
 }
-
-
-void Engine::run(){
-    game::Game *game = game::Game::instance();
-    if(!game->isRunning())
-        game->start();
-
-    nwk::Network *network = nwk::Network::instance();
-    if(!network->isRunning())
-        network->start();
-
-}
+#endif // HTTPPERIODQUERY_HPP

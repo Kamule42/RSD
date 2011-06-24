@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // RSD
-// Copyright (C) 22/06/2011 Benjamin Herbomez (benjamin.herbomez@gmail.com)
+// Copyright (C) 23/06/2011 Benjamin Herbomez (benjamin.herbomez@gmail.com)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -22,34 +22,34 @@
 //
 ////////////////////////////////////////////////////////////
 
-#include "httpquery.hpp"
+#include "httpperiodquery.hpp"
+#include <QObject>
 
 namespace nwk{
-    HttpQuery::HttpQuery(QString url) : ANetworkQuery(){
-        this->mUrl = new QUrl(url);
-        this->mAccess = new QNetworkAccessManager();
-        this->mRequest = new QNetworkRequest(*this->mUrl);
-        this->mReply    = 0;
-        this->mContent = "";
+
+     HttpPeriodQuery::HttpPeriodQueryThread::HttpPeriodQueryThread(HttpPeriodQuery *obj, qint64 inter){
+        this->mObject = obj;
+        this->mInter = inter;
     }
 
-    QString HttpQuery::getContent(){
-        return this->mContent;
+     void  HttpPeriodQuery::HttpPeriodQueryThread::run(){
+         while(this->isRunning()){
+             this->mObject->run();
+             this->sleep(this->mInter);
+         }
+     }
+
+    HttpPeriodQuery::HttpPeriodQuery(QString url, qint64 inter) : HttpQuery(url){
+        this->mThread = new HttpPeriodQueryThread(this, inter);
     }
 
-
-    void HttpQuery::launch(){
+    void HttpPeriodQuery::run(){
         this->mReply = this->mAccess->get(*this->mRequest);
-        connect(this->mReply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(slotProgress(qint64, qint64) ));
-        connect(this->mReply, SIGNAL(finished()), this, SLOT(slotFinish()));
+        QObject::connect(this->mReply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(slotProgress(qint64, qint64) ));
+        QObject::connect(this->mReply, SIGNAL(finished()), this, SLOT(slotFinish()));
     }
 
-    void HttpQuery::slotFinish(){
-        this->mContent = this->mReply->readAll();
-        emit finish();
-    }
-
-    void HttpQuery::slotProgress(qint64 i1, qint64 i2){
-        emit progress(i1,i2);
+    void HttpPeriodQuery::launch(){
+        this->mThread->start();
     }
 }

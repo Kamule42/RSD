@@ -43,8 +43,12 @@ namespace nwk{
             const QNetworkRequest *mRequest;
             QNetworkReply *mReply;
 
+            QString mContent;
+
         public:
             HttpQuery(QString url);
+
+            QString getContent();
 
         signals:
 

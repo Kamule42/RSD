@@ -30,14 +30,20 @@ SOURCES += main.cpp \
     modules/game/game.cpp \
     modules/network/network.cpp \
     modules/network/anetworkquery.cpp \
-    modules/network/httpquery.cpp
+    modules/network/httpquery.cpp \
+    modules/network/httpperiodquery.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
 #qtcAddDeployment()
 
 OTHER_FILES += \
-    license
+    license \
+    medias/GUI/qml/RSD/main.qml \
+    medias/GUI/qml/RSD/UI/Title.qml \
+    medias/GUI/qml/RSD/UI/Menu.qml \
+    medias/GUI/qml/RSD/UI/Button.qml \
+    medias/GUI/qml/RSD/UI/JS/main.js
 
 
 TRANSLATIONS = RSD_en.ts RSD_fr.ts
@@ -49,7 +55,8 @@ HEADERS += \
     tools/singleton.hpp \
     modules/network/network.hpp \
     modules/network/anetworkquery.hpp \
-    modules/network/httpquery.hpp
+    modules/network/httpquery.hpp \
+    modules/network/httpperiodquery.hpp
 
 RESOURCES += \
     medias/GUI.qrc
