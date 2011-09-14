@@ -27,69 +27,15 @@
 
 
 require("db.php.inc");
+mysql_connect ($host,$user,$pass);
+mysql_select_db($db);
 
-if(isset($_GET['action'])){
-	if($_GET['action'] = 'ping'){
-		if(isset($_GET['n']) AND isset($_GET['p']) AND is_numeric($_GET['p'])){
-			$sql = "
-				SELECT lastUp
-					FROM RSD_users
-					WHERE
-						name = '".addslashes($_GET['n'])."'
-				;
-			";
-			$search = mysql_query($sql);
-			$data  	= mysql_fetch_row($search);
-			if(isset($data[0])){
-				$sql = "
-					UPDATE RSD_users
-						SET
-							lastUp = ".time().",
-							IP = '".$_SERVER["REMOTE_ADDR"]."',
-							port = '".$_GET['p']."'
-						WHERE
-							name = '".addslashes($_GET['n'])."'
-					;
-				";
-				
-				mysql_query($sql);
-			}
-			else{
-				$sql = "
-					INSERT INTO RSD_users
-						(`IP`,`name`,`port`,`lastUp`)
-						VALUE(
-							'".$_SERVER["REMOTE_ADDR"]."',
-							'".addslashes($_GET['n'])."',
-							'".$_GET['p']."',
-							".time()."
-						)	
-					;
-				";
-				
-				mysql_query($sql);
-			}
-		}
-		echo 'pong';
-	}
-	elseif($_GET['action'] == 'view'){
-		Header("content-type: application/xml");
-		$sql = "
-				SELECT name,IP,port,lastUp
-					FROM RSD_users
-					WHERE
-						name = '".addslashes($_GET['n'])."'
-				;
-			";
-			$search = mysql_query($sql);
-			echo '
-<list>';
-			while($data = mysql_fetch_row($search)){
-				echo '
-	<user name="',$data[0],'" IP="',$data[1],'" port="',$data[2],'" last="',$data[3],'"/>';
-			}
-			echo '
-</list>';
-	}
-}
 ?>
+<html>
+	<head>
+		<title>Rhapsody for the Scarlet Devil</title>
+	</head>
+	<body>
+		<h1>Rhapsody for the Scarlet Devil</h1>
+	</body>
+</html>

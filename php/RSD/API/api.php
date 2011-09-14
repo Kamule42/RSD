@@ -1,7 +1,10 @@
+<?php
+
 ////////////////////////////////////////////////////////////
 //
-// RSD
-// Copyright (C) 17/06/2011 Benjamin Herbomez (benjamin.herbomez@gmail.com)
+//  Rhapsody for the scarlet devil
+// Copyright (C) 2011 Benjamin Herbomez (benjamin.herbomez@gmail.com)
+//
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -22,31 +25,40 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef ANETWORKQUERY_HPP
-#define ANETWORKQUERY_HPP
 
-#include <QObject>
-#include <QNetworkReply>
+require("../db.php.inc");
+mysql_connect ($host,$user,$pass);
+mysql_select_db($db);
+	
+require("functions.php.inc");
 
-namespace nwk{
-    class ANetworkQuery : public QObject{
-        Q_OBJECT
+clean();
 
-        friend class Network;
-
-        protected:
-            ANetworkQuery();
-
-
-        public slots:
-            virtual void launch();
-
-        protected :
-            virtual void launchPro() = 0;
-
-        signals :
-            void finish(QNetworkReply::NetworkError);
-            void progress(qint64, qint64);
-    };
+if(isset($_GET['action'])){
+	if($_GET['action'] == 'ping'){
+		if(isset($_GET['n']) AND isset($_GET['p']) AND is_numeric($_GET['p'])){
+			
+			$sql = "
+				SELECT lastUp
+					FROM RSD_users
+					WHERE
+						name = '".addslashes($_GET['n'])."' AND
+						IP = '".$_SERVER["REMOTE_ADDR"]."'
+				;
+			";
+			$search = mysql_query($sql);
+			$data  	= mysql_fetch_row($search);
+			if(isset($data[0])){
+				update_user($_GET['p'],addslashes($_GET['n']));
+			}
+			else{
+				add_user($_GET['p'],addslashes($_GET['n']));
+			}
+		}
+		echo 'pong';
+	}
+	elseif($_GET['action'] == 'view'){
+		list_users();
+	}
 }
-#endif // ANETWORKQUERY_HPP
+?>

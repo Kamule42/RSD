@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // RSD
-// Copyright (C) 17/06/2011 Benjamin Herbomez (benjamin.herbomez@gmail.com)
+// Copyright (C) %DATE% Benjamin Herbomez (benjamin.herbomez@gmail.com)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -22,31 +22,40 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef ANETWORKQUERY_HPP
-#define ANETWORKQUERY_HPP
+import QtQuick 1.0
+import Qt 4.7
 
-#include <QObject>
-#include <QNetworkReply>
+import "JS/main.js" as Controler
 
-namespace nwk{
-    class ANetworkQuery : public QObject{
-        Q_OBJECT
-
-        friend class Network;
-
-        protected:
-            ANetworkQuery();
+Column {
+    spacing: 10
+    property int textSize: 42
 
 
-        public slots:
-            virtual void launch();
+    Button {
+        id      : optionGameButton
+        text    : qsTr("Game")
+        textSize: parent.textSize
+        onClicked: Controler.setState("optionGame")
+    }
 
-        protected :
-            virtual void launchPro() = 0;
+    Button {
+        id      : optionGraphicButton
+        text    : qsTr("Graphic")
+        textSize: parent.textSize
+    }
 
-        signals :
-            void finish(QNetworkReply::NetworkError);
-            void progress(qint64, qint64);
-    };
+    Button {
+        id      : optionAudioButton
+        text    : qsTr("Audio")
+        textSize: parent.textSize
+    }
+
+    Button {
+        id      : optionReturnButton
+        text    : qsTr("Return")
+        textSize: parent.textSize
+        onClicked: Controler.setState("default")
+    }
+
 }
-#endif // ANETWORKQUERY_HPP

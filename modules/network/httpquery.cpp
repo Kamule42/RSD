@@ -47,9 +47,10 @@ namespace nwk{
     }
 
     void HttpQuery::slotFinish(){
+
         this->mContent = this->mReply->readAll();
-        qDebug() << this->mContent;
-        emit finish();
+        //qDebug() << this->mContent;
+        emit finish(this->mReply->error());
     }
 
     void HttpQuery::slotProgress(qint64 i1, qint64 i2){

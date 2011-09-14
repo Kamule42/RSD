@@ -48,7 +48,7 @@ namespace nwk{
                 this->mQuery.removeFirst();
             }
 
-            int diff = t1.msecsTo(QTime::currentTime());
+            //int diff = t1.msecsTo(QTime::currentTime());
             //std::cout << diff << std::endl;
             //this->sleep();
         }

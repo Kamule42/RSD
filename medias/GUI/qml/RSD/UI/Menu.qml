@@ -48,7 +48,7 @@ Column {
         id              : optionButton
         text           : qsTr("Option")
         textSize    : parent.textSize
-        onClicked  : Controler.showOption()
+        onClicked  : Controler.setState("option")
     }
 
     Button {

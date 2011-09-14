@@ -43,7 +43,10 @@ OTHER_FILES += \
     medias/GUI/qml/RSD/UI/Title.qml \
     medias/GUI/qml/RSD/UI/Menu.qml \
     medias/GUI/qml/RSD/UI/Button.qml \
-    medias/GUI/qml/RSD/UI/JS/main.js
+    medias/GUI/qml/RSD/UI/JS/main.js \
+    README \
+    medias/GUI/qml/RSD/UI/Option.qml \
+    medias/GUI/qml/RSD/UI/OptionGame.qml
 
 
 TRANSLATIONS = RSD_en.ts RSD_fr.ts
@@ -62,5 +65,3 @@ RESOURCES += \
     medias/GUI.qrc
 
 QT += network
-
-CONFIG+= console

@@ -27,28 +27,22 @@ import Qt 4.7
 import "UI"
 
 Item{
-
     width   : 1000;
     height  : 800;
+    id        : main
+    state   : "default"
 
     Rectangle {
         id: background
-        anchors.fill: parent;
-        color : "grey"
+        x: 0
+        y: 0
+        anchors.fill                     : parent;
+        color                             : "grey"
+        anchors.rightMargin        : 0
+        anchors.bottomMargin    : 0
+        anchors.leftMargin          : 0
+        anchors.topMargin          : 0
 
-
-        Menu{
-            id      : menu
-            clip    : false
-
-            textSize: parent.height * 0.04
-
-            anchors.top           : title.bottom
-            anchors.topMargin : parent.height * 0.15
-
-            anchors.left           : parent.left
-            anchors.leftMargin : parent.width * 0.09
-        }
 
         Title{
             id                                   : title
@@ -57,5 +51,118 @@ Item{
             anchors.topMargin           : 0
             anchors.horizontalCenter  : parent.horizontalCenter
         }
+
+        Rectangle {
+            id      : menuBack
+
+            anchors.top           : title.bottom
+            anchors.topMargin : parent.height * 0.15
+
+            anchors.left            : parent.left
+            anchors.right          : parent.right
+
+            anchors.bottom          : parent.bottom
+            anchors.bottomMargin : parent.height * 0.15
+
+            color : "white"
+
+            border {
+                width: 1
+                color: "black"
+            }
+
+            Menu{
+                id      : menu
+                clip    : false
+
+                textSize: parent.height * 0.04
+
+               anchors.top           : parent.top
+               anchors.topMargin : parent.height * 0.15
+
+                anchors.leftMargin  : parent.width * 0.15
+
+                anchors.right         : parent.right
+            }
+
+            Option{
+                    id      : option
+                    clip    : false
+
+                    textSize: parent.height * 0.04
+
+                   anchors.top           : parent.top
+                   anchors.topMargin : parent.height * 0.15
+
+                    anchors.leftMargin  : parent.width * 0.15
+            }
+
+            OptionGame{
+                    id      : optionGame
+                    clip    : false
+
+                    textSize: parent.height * 0.04
+
+                   anchors.top           : parent.top
+                   anchors.topMargin : parent.height * 0.15
+
+                    anchors.leftMargin  : parent.width * 0.15
+            }
+        }
     }
+
+
+    states: [
+        State{
+             name: "default"
+             AnchorChanges {
+                 target: menu
+                 anchors.left  : menu.parent.left
+             }
+             AnchorChanges {
+                 target: option
+                 anchors.left  : option.parent.right
+             }
+             AnchorChanges {
+                 target: optionGame
+                 anchors.left  : option.parent.right
+             }
+        },
+        State {
+            name: "option"
+            AnchorChanges {
+                target: menu
+                anchors.right  : menu.parent.left
+            }
+            AnchorChanges {
+                target: option
+                anchors.left  : option.parent.left
+            }
+            AnchorChanges {
+                target: optionGame
+                anchors.left  : option.parent.right
+            }
+        },
+        State {
+            name: "optionGame"
+            AnchorChanges {
+                target: menu
+                anchors.right  : menu.parent.left
+            }
+            AnchorChanges {
+                target: option
+                anchors.right  : menu.parent.left
+            }
+            AnchorChanges {
+                target: optionGame
+                anchors.left  : option.parent.left
+            }
+        }
+    ]
+
+    transitions: [
+        Transition {
+            AnchorAnimation { duration: 500}
+        }
+    ]
 }

@@ -1,3 +1,3 @@
-function showOption() {
-    console.log("optionCLicked")
+function setState(v) {
+    main.state = v
 }

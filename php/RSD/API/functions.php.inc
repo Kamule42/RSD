@@ -1,4 +1,5 @@
 <?php
+
 ////////////////////////////////////////////////////////////
 //
 //  Rhapsody for the scarlet devil
@@ -24,11 +25,64 @@
 //
 ////////////////////////////////////////////////////////////
 
-require('db_log.php.inc');
 
-function db_connect(){
-	mysql_connect ($host,$user,$pass);
-	mysql_select_db($db);
+function clean(){
+	$sql = "
+		DELETE FROM RSD_users
+		WHERE
+			lastUp <= ".(time()-60)."
+	";
+	
+	mysql_query($sql);
 }
 
+function update_user($p,$n){
+	$sql = "
+		UPDATE RSD_users
+			SET
+				lastUp = ".time().",
+				port = '".$p."'
+			WHERE
+				name = '".$n."' AND
+				IP = '".$_SERVER["REMOTE_ADDR"]."'
+		;
+	";
+	
+	mysql_query($sql);
+}
+
+function add_user($p,$n){
+	$sql = "
+		INSERT INTO RSD_users
+			(`IP`,`name`,`port`,`lastUp`)
+			VALUE(
+				'".$_SERVER["REMOTE_ADDR"]."',
+				'".$n."',
+				'".$p."',
+				".time()."
+			)	
+		;
+	";
+	
+	mysql_query($sql);
+}
+
+function list_users(){
+	Header("content-type: application/xml");
+		
+	$sql = "
+			SELECT name,IP,port,lastUp
+			FROM RSD_users
+			ORDER BY lastUp DESC	
+			;
+		";
+		$search = mysql_query($sql) or die(mysql_errno());
+		echo '<list>';
+		while($data = mysql_fetch_row($search)){
+			echo '
+	<user name="',$data[0],'" IP="',$data[1],'" port="',$data[2],'" last="',$data[3],'"/>';
+		}
+		echo '
+</list>';
+}
 ?>
