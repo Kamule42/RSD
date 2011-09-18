@@ -25,17 +25,22 @@
 #include "engine.hpp"
 #include <QtGui/QApplication>
 #include <QSplashScreen>
+#include <QResource>
+#include <QFile>
+#include <QtXml/QDomDocument>
 #include "qmlapplicationviewer.h"
 
-#include <iostream>
+#include <QDebug>
+
+void loadResources();
 
 int main(int argc, char * argv[]){
     QApplication app(argc, argv);
+    loadResources();
+
     QPixmap pixmap(":/splash/img.png");
     QSplashScreen *mSplash = new QSplashScreen(pixmap);
     mSplash->show();
-
-
 
     Engine *engine = new Engine();
     engine->run();
@@ -49,7 +54,37 @@ int main(int argc, char * argv[]){
 
     mSplash->finish(&viewer);
 
-
-
     return app.exec();
+}
+
+//Load all resources files from the main resource file
+//create a resource file from qrc : rcc -binary input.qrc -o  output.rcc
+void loadResources(){
+     QResource::registerResource("medias/Resources.rcc");
+
+     QDomDocument doc("ResourceDoc");
+     QFile file(":/Resources/list.xml");
+     if(!file.open( QIODevice::ReadOnly ))
+         return;
+     if(!doc.setContent(&file)){
+        file.close();
+        qDebug() << "Erreur";
+        return;
+     }
+
+     QDomElement root = doc.documentElement();
+     if(root.tagName() != "list")
+         return;
+     QDomNode n = root.firstChild();
+     while(!n.isNull()){
+         QDomElement e = n.toElement();
+         if(e.tagName() == "res" && e.nodeType() == QDomNode::ElementNode
+                 && e.childNodes().count()  == 1)
+             QResource::registerResource("medias/"+e.text()+".rcc");
+
+         n = n.nextSibling();
+     }
+
+     file.close();
+
 }

@@ -10,10 +10,19 @@
         <file alias="DARK11__.ttf">GUI/qml/RSD/UI/DARK11__.ttf</file>
         <file alias="Menu.qml">GUI/qml/RSD/UI/Menu.qml</file>
         <file alias="Title.qml">GUI/qml/RSD/UI/Title.qml</file>
-        <file alias="Option.qml">GUI/qml/RSD/UI/Option.qml</file>
-        <file alias="OptionGame.qml">GUI/qml/RSD/UI/OptionGame.qml</file>
     </qresource>
     <qresource prefix="/qml/UI/JS">
         <file alias="main.js">GUI/qml/RSD/UI/JS/main.js</file>
+    </qresource>
+    <qresource prefix="/qml/UI/Option">
+        <file alias="Option.qml">GUI/qml/RSD/UI/Option/Option.qml</file>
+        <file alias="OptionGame.qml">GUI/qml/RSD/UI/Option/OptionGame.qml</file>
+        <file alias="OptionMain.qml">GUI/qml/RSD/UI/Option/OptionMain.qml</file>
+    </qresource>
+    <qresource prefix="/qml/UI/Game">
+        <file alias="Main.qml">GUI/qml/RSD/UI/Game/Main.qml</file>
+    </qresource>
+    <qresource prefix="/qml/UI/Army">
+        <file alias="Main.qml">GUI/qml/RSD/UI/Army/Main.qml</file>
     </qresource>
 </RCC>

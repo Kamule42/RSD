@@ -3,6 +3,7 @@ folder_01.source = qml/RSD
 folder_01.target = qml
 DEPLOYMENTFOLDERS = folder_01
 
+
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =
 
@@ -45,8 +46,14 @@ OTHER_FILES += \
     medias/GUI/qml/RSD/UI/Button.qml \
     medias/GUI/qml/RSD/UI/JS/main.js \
     README \
-    medias/GUI/qml/RSD/UI/Option.qml \
-    medias/GUI/qml/RSD/UI/OptionGame.qml
+    medias/GUI/qml/RSD/UI/Option/Option.qml \
+    medias/GUI/qml/RSD/UI/Option/OptionGame.qml \
+    medias/GUI/qml/RSD/UI/Option/OptionMain.qml \
+    medias/GUI/qml/RSD/UI/Game/Main.qml \
+    medias/GUI/qml/RSD/UI/Army/Main.qml\
+    medias/GUI.qrc\
+    medias/Resources.qrc \
+    medias/Resources/list.xml
 
 
 TRANSLATIONS = RSD_en.ts RSD_fr.ts
@@ -61,7 +68,7 @@ HEADERS += \
     modules/network/httpquery.hpp \
     modules/network/httpperiodquery.hpp
 
-RESOURCES += \
-    medias/GUI.qrc
 
-QT += network
+QT += network xml
+
+CONFIG += debug

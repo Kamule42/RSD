@@ -25,7 +25,7 @@
 import QtQuick 1.0
 import Qt 4.7
 
-import "JS/main.js" as Controler
+import "../"
 
 Column {
     spacing: 10
@@ -33,9 +33,9 @@ Column {
 
     Button {
         id      : optionReturnButton
-        text    : qsTr("Return")
+        text    : qsTr("Retour")
         textSize: parent.textSize
-        onClicked: Controler.setState("option")
+        onClicked: {option.state="default"}
     }
 
 }

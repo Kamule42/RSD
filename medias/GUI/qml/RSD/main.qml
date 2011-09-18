@@ -25,6 +25,7 @@
 import Qt 4.7
 
 import "UI"
+import "UI/Option"
 
 Item{
     width   : 1000;
@@ -82,31 +83,28 @@ Item{
 
                 anchors.leftMargin  : parent.width * 0.15
 
-                anchors.right         : parent.right
+
+
+                Behavior on opacity {
+                     NumberAnimation { properties:"opacity"; duration:500 }
+                 }
             }
 
             Option{
                     id      : option
                     clip    : false
-
                     textSize: parent.height * 0.04
+                    opacity : 0
 
                    anchors.top           : parent.top
                    anchors.topMargin : parent.height * 0.15
 
-                    anchors.leftMargin  : parent.width * 0.15
-            }
+                   anchors.leftMargin  : parent.width * 0.15
 
-            OptionGame{
-                    id      : optionGame
-                    clip    : false
+                   Behavior on opacity {
+                        NumberAnimation { properties:"opacity"; duration:500 }
+                    }
 
-                    textSize: parent.height * 0.04
-
-                   anchors.top           : parent.top
-                   anchors.topMargin : parent.height * 0.15
-
-                    anchors.leftMargin  : parent.width * 0.15
             }
         }
     }
@@ -119,43 +117,36 @@ Item{
                  target: menu
                  anchors.left  : menu.parent.left
              }
-             AnchorChanges {
-                 target: option
-                 anchors.left  : option.parent.right
+             PropertyChanges {
+                 target: menu
+                 opacity    : 1
              }
              AnchorChanges {
-                 target: optionGame
-                 anchors.left  : option.parent.right
+                 target: option
+                 anchors.left  : menu.right
+             }
+             PropertyChanges {
+                 target: option
+                 opacity    : 0
              }
         },
         State {
             name: "option"
             AnchorChanges {
                 target: menu
-                anchors.right  : menu.parent.left
+                anchors.right  : option.right
             }
-            AnchorChanges {
-                target: option
-                anchors.left  : option.parent.left
-            }
-            AnchorChanges {
-                target: optionGame
-                anchors.left  : option.parent.right
-            }
-        },
-        State {
-            name: "optionGame"
-            AnchorChanges {
+            PropertyChanges {
                 target: menu
-                anchors.right  : menu.parent.left
+                opacity    : 0
             }
             AnchorChanges {
                 target: option
-                anchors.right  : menu.parent.left
-            }
-            AnchorChanges {
-                target: optionGame
                 anchors.left  : option.parent.left
+            }
+            PropertyChanges {
+                target: option
+                opacity    : 1
             }
         }
     ]

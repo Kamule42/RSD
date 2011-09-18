@@ -26,7 +26,6 @@
 #include "anetworkquery.hpp"
 
 #include <QTime>
-#include <iostream>
 
 namespace nwk{
     Network::Network() : Module(){

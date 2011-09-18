@@ -25,23 +25,26 @@
 import QtQuick 1.0
 import Qt 4.7
 
-import "JS/main.js" as Controler
+import "../JS/main.js" as Controler
+import "../"
+
 
 Column {
     spacing: 10
-    property int textSize: 42
+    property int textSize: parent.textSize
+
 
 
     Button {
         id      : optionGameButton
-        text    : qsTr("Game")
+        text    : qsTr("Jeu")
         textSize: parent.textSize
-        onClicked: Controler.setState("optionGame")
+        onClicked: option.state="game"
     }
 
     Button {
         id      : optionGraphicButton
-        text    : qsTr("Graphic")
+        text    : qsTr("Graphique")
         textSize: parent.textSize
     }
 
@@ -53,7 +56,7 @@ Column {
 
     Button {
         id      : optionReturnButton
-        text    : qsTr("Return")
+        text    : qsTr("Retour")
         textSize: parent.textSize
         onClicked: Controler.setState("default")
     }

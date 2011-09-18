@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/Resources">
+        <file alias="list.xml">Resources/list.xml</file>
+    </qresource>
+</RCC>
