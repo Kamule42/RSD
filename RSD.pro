@@ -49,11 +49,11 @@ OTHER_FILES += \
     medias/GUI/qml/RSD/UI/Option/Option.qml \
     medias/GUI/qml/RSD/UI/Option/OptionGame.qml \
     medias/GUI/qml/RSD/UI/Option/OptionMain.qml \
-    medias/GUI/qml/RSD/UI/Game/Main.qml \
-    medias/GUI/qml/RSD/UI/Army/Main.qml\
     medias/GUI.qrc\
     medias/Resources.qrc \
-    medias/Resources/list.xml
+    medias/Resources/list.xml \
+    medias/GUI/qml/RSD/UI/Army/Army.qml \
+    medias/GUI/qml/RSD/UI/Game/Game.qml
 
 
 TRANSLATIONS = RSD_en.ts RSD_fr.ts

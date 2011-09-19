@@ -25,36 +25,19 @@
 import QtQuick 1.0
 import Qt 4.7
 
-import "JS/main.js" as Controler
+import "../"
 
-Column {
-    spacing: 10
+Rectangle {
+    width: 100
+    height: 62
+
     property int textSize: 42
 
     Button {
-        id      : newGameButton
-        text    : qsTr("Jouer")
+        id      : optionReturnButton
+        text    : qsTr("Retour")
         textSize: parent.textSize
+        onClicked: main.state = "default"
     }
 
-    Button{
-        id      : manageArmyButton
-        text    : qsTr("Gérer mes armées")
-        textSize: parent.textSize
-        onClicked  : Controler.setState("army")
-    }
-
-    Button {
-        id              : optionButton
-        text           : qsTr("Options")
-        textSize    : parent.textSize
-        onClicked  : Controler.setState("option")
-    }
-
-    Button {
-        id          : exitButton
-        text        : qsTr("Quitter")
-        textSize: parent.textSize
-        onClicked   : Qt.quit()
-    }
 }

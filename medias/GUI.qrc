@@ -20,9 +20,9 @@
         <file alias="OptionMain.qml">GUI/qml/RSD/UI/Option/OptionMain.qml</file>
     </qresource>
     <qresource prefix="/qml/UI/Game">
-        <file alias="Main.qml">GUI/qml/RSD/UI/Game/Main.qml</file>
+        <file alias="Game.qml">GUI/qml/RSD/UI/Game/Game.qml</file>
     </qresource>
     <qresource prefix="/qml/UI/Army">
-        <file alias="Main.qml">GUI/qml/RSD/UI/Army/Main.qml</file>
+        <file alias="Army.qml">GUI/qml/RSD/UI/Army/Army.qml</file>
     </qresource>
 </RCC>

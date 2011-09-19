@@ -25,7 +25,10 @@
 import Qt 4.7
 
 import "UI"
+import "UI/Game"
+import "UI/Army"
 import "UI/Option"
+
 
 Item{
     width   : 1000;
@@ -81,9 +84,8 @@ Item{
                anchors.top           : parent.top
                anchors.topMargin : parent.height * 0.15
 
-                anchors.leftMargin  : parent.width * 0.15
-
-
+               anchors.left            : parent.left
+               anchors.leftMargin  : parent.width * 0.15
 
                 Behavior on opacity {
                      NumberAnimation { properties:"opacity"; duration:500 }
@@ -101,10 +103,29 @@ Item{
 
                    anchors.leftMargin  : parent.width * 0.15
 
+                   anchors.left             : menu.right
+
                    Behavior on opacity {
                         NumberAnimation { properties:"opacity"; duration:500 }
                     }
 
+            }
+
+            Army{
+                    id      : army
+                    clip    : false
+                    textSize: parent.height * 0.04
+                    opacity : 0
+
+                   anchors.top           : parent.top
+                   anchors.topMargin : parent.height * 0.15
+
+                   anchors.leftMargin  : parent.width * 0.15
+                   anchors.left            : menu.right
+
+                   Behavior on opacity {
+                        NumberAnimation { properties:"opacity"; duration:500 }
+                    }
             }
         }
     }
@@ -113,22 +134,6 @@ Item{
     states: [
         State{
              name: "default"
-             AnchorChanges {
-                 target: menu
-                 anchors.left  : menu.parent.left
-             }
-             PropertyChanges {
-                 target: menu
-                 opacity    : 1
-             }
-             AnchorChanges {
-                 target: option
-                 anchors.left  : menu.right
-             }
-             PropertyChanges {
-                 target: option
-                 opacity    : 0
-             }
         },
         State {
             name: "option"
@@ -148,7 +153,27 @@ Item{
                 target: option
                 opacity    : 1
             }
+        },
+        State {
+            name: "army"
+            AnchorChanges {
+                target: menu
+                anchors.right  : option.right
+            }
+            PropertyChanges {
+                target: menu
+                opacity    : 0
+            }
+            AnchorChanges {
+                target: army
+                anchors.left  : option.parent.left
+            }
+            PropertyChanges {
+                target: army
+                opacity    : 1
+            }
         }
+
     ]
 
     transitions: [
