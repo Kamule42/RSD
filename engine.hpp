@@ -26,15 +26,20 @@
 #define ENGINE_HPP
 
 #include <QObject>
+#include "modules/config/config.hpp"
 
 class Engine : public QObject
 {
     Q_OBJECT
+    private:
+        cf::Config *mConf;
     public:
         explicit Engine(QObject *parent = 0);
 
         void run();
 
+
+        Q_INVOKABLE cf::Config* config();
     signals:
 
     public slots:

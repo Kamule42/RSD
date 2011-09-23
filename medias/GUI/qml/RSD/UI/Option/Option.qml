@@ -31,7 +31,6 @@ Rectangle{
 
     anchors.topMargin : parent.height * 0.15
     state : "default"
-    color : "red"
 
     property int textSize: 42
 

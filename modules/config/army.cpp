@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // RSD
-// Copyright (C) %DATE% Benjamin Herbomez (benjamin.herbomez@gmail.com)
+// Copyright (C) 20/09/2011 Benjamin Herbomez (benjamin.herbomez@gmail.com)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -22,43 +22,20 @@
 //
 ////////////////////////////////////////////////////////////
 
-import QtQuick 1.0
-import Qt 4.7
+#include "army.hpp"
+#include <QDebug>
 
-import "../"
-
-Rectangle {
-
-    property int textSize: 42
-    width: 100
-    height: 62
-
-    anchors.fill: parent
-
-
-    ListView {
-        id: listArmy
-        model: cppArmyList
-        anchors.top: parent.top
-        anchors.bottom: optionReturnButton.top
-        delegate:
-            Button {
-                text    : model.modelData.name
-                textSize: optionReturnButton.textSize
-            }
+namespace cf{
+    Army::Army(QString name, qint32 id) :  QObject(){
+        this->m_name = name;
+        this->m_id       = id;
     }
 
-
-    Button {
-        id      : optionReturnButton
-        text    : qsTr("Retour")
-        textSize: parent.textSize
-
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: background.height*0.07
-
-        onClicked: main.state = "default"
-
+    QString  Army::name(){
+        return this->m_name;
     }
 
+    qint32 Army::id(){
+        return this->m_id;
+    }
 }

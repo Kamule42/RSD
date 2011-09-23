@@ -30,7 +30,7 @@
 #include "modules/network/httpquery.hpp"
 
 Engine::Engine(QObject *parent) : QObject(parent){
-
+    this->mConf = new cf::Config();
 }
 
 
@@ -49,4 +49,9 @@ void Engine::run(){
 
     q->launch();
 
+}
+
+
+cf::Config* Engine::config(){
+    return this->mConf;
 }

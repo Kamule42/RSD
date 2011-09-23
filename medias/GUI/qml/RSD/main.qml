@@ -81,11 +81,14 @@ Item{
 
                 textSize: parent.height * 0.04
 
+                anchors.fill: parent
+
                anchors.top           : parent.top
                anchors.topMargin : parent.height * 0.15
 
                anchors.left            : parent.left
                anchors.leftMargin  : parent.width * 0.15
+
 
                 Behavior on opacity {
                      NumberAnimation { properties:"opacity"; duration:500 }
@@ -120,8 +123,8 @@ Item{
                    anchors.top           : parent.top
                    anchors.topMargin : parent.height * 0.15
 
-                   anchors.leftMargin  : parent.width * 0.15
                    anchors.left            : menu.right
+                   anchors.leftMargin  : parent.width * 0.15
 
                    Behavior on opacity {
                         NumberAnimation { properties:"opacity"; duration:500 }
@@ -134,12 +137,18 @@ Item{
     states: [
         State{
              name: "default"
+
+             PropertyChanges {
+                 target: option
+                 width: 191
+                 height: 161
+             }
         },
         State {
             name: "option"
             AnchorChanges {
                 target: menu
-                anchors.right  : option.right
+                anchors.left  : background.right
             }
             PropertyChanges {
                 target: menu
@@ -158,7 +167,7 @@ Item{
             name: "army"
             AnchorChanges {
                 target: menu
-                anchors.right  : option.right
+                anchors.left  : parent.right
             }
             PropertyChanges {
                 target: menu
@@ -166,7 +175,7 @@ Item{
             }
             AnchorChanges {
                 target: army
-                anchors.left  : option.parent.left
+                anchors.left  : army.parent.left
             }
             PropertyChanges {
                 target: army

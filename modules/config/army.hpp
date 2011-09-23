@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // RSD
-// Copyright (C) %DATE% Benjamin Herbomez (benjamin.herbomez@gmail.com)
+// Copyright (C) 20/09/2011 Benjamin Herbomez (benjamin.herbomez@gmail.com)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -22,43 +22,34 @@
 //
 ////////////////////////////////////////////////////////////
 
-import QtQuick 1.0
-import Qt 4.7
+#ifndef ARMY_HPP
+#define ARMY_HPP
 
-import "../"
+#include <QObject>
+#include <QString>
 
-Rectangle {
+namespace cf{
+    class Army : public QObject{
+        Q_OBJECT
+        Q_PROPERTY(QString name READ name NOTIFY nameChanged)
+        Q_PROPERTY(QString id READ id NOTIFY idChanged)
 
-    property int textSize: 42
-    width: 100
-    height: 62
+        private:
+            QString m_name;
+            qint32 m_id;
 
-    anchors.fill: parent
+        public:
+            explicit Army(QString name, qint32 id);
 
+            Q_INVOKABLE QString name();
+            Q_INVOKABLE qint32 id();
 
-    ListView {
-        id: listArmy
-        model: cppArmyList
-        anchors.top: parent.top
-        anchors.bottom: optionReturnButton.top
-        delegate:
-            Button {
-                text    : model.modelData.name
-                textSize: optionReturnButton.textSize
-            }
-    }
+        signals:
+             void nameChanged();
+             void idChanged();
 
+        public slots:
 
-    Button {
-        id      : optionReturnButton
-        text    : qsTr("Retour")
-        textSize: parent.textSize
-
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: background.height*0.07
-
-        onClicked: main.state = "default"
-
-    }
-
+    };
 }
+#endif // ARMY_HPP

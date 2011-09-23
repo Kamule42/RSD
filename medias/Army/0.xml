@@ -1,0 +1,17 @@
+<army id="0">
+    <caracBase>
+        <carac name="pv" value="1" />
+        <carac name="mv" value="6" />
+        <carac name="dx" value="4" />
+        <carac name="st" value="3" />
+        <carac name="ml" value="0" />
+    </caracBase>
+    <unit id="0" type="0">
+        <name>Prince régent</name>
+        <caracs>
+            <carac name="pv" value="3" />
+            <carac name="dx" value="6" />
+            <carac name="st" value="4" />
+        </caracs>
+    </unit>
+</army>

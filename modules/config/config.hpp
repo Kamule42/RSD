@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // RSD
-// Copyright (C) %DATE% Benjamin Herbomez (benjamin.herbomez@gmail.com)
+// Copyright (C) 20/09/2011 Benjamin Herbomez (benjamin.herbomez@gmail.com)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -22,43 +22,33 @@
 //
 ////////////////////////////////////////////////////////////
 
-import QtQuick 1.0
-import Qt 4.7
+#ifndef CONFIG_HPP
+#define CONFIG_HPP
 
-import "../"
+#include <QObject>
+#include <QList>
 
-Rectangle {
+#include "army.hpp"
 
-    property int textSize: 42
-    width: 100
-    height: 62
+namespace cf{
+    class Config: public QObject{
+        Q_OBJECT
+        Q_PROPERTY(QList<QObject*> mArmyList READ armyList())
 
-    anchors.fill: parent
+        private:
+            QList<QObject*> m_mArmyList;
 
+        public:
+            Config();
 
-    ListView {
-        id: listArmy
-        model: cppArmyList
-        anchors.top: parent.top
-        anchors.bottom: optionReturnButton.top
-        delegate:
-            Button {
-                text    : model.modelData.name
-                textSize: optionReturnButton.textSize
-            }
-    }
+            Q_INVOKABLE QList<QObject*> armyList();
 
 
-    Button {
-        id      : optionReturnButton
-        text    : qsTr("Retour")
-        textSize: parent.textSize
 
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: background.height*0.07
+        private:
+            void init();
 
-        onClicked: main.state = "default"
 
-    }
-
-}
+    };
+} // namespace cfs
+#endif // CONFIG_HPP

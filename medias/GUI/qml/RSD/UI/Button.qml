@@ -25,7 +25,7 @@
 import QtQuick 1.0
 import Qt 4.7
 
-Rectangle {
+Item {
     id: container
 
     property string text: "Button"
@@ -37,10 +37,21 @@ Rectangle {
     height  : textSize*1.5
     smooth  : true
 
-    border {
+    /*border {
         width: 1
         color: "black"
-    }
+    }*/
+
+    BorderImage {
+        id : buttonBorder
+         width:parent.width
+         height: parent.height
+         border { left: 20; top: 20; right: 9; bottom: 9 }
+         horizontalTileMode: BorderImage.Repeat
+         verticalTileMode: BorderImage.Repeat
+         source: "button.png"
+     }
+
 
     Text {
         id: buttonLabel
@@ -48,28 +59,6 @@ Rectangle {
         anchors.centerIn: container
         color: "white"
         font.pixelSize: parent.textSize
-    }
-
-
-    radius: 8
-
-    gradient: Gradient {
-        GradientStop {
-            id: gradientstop1
-            position: 0.0
-            color: "#56d5ff"
-        }
-        GradientStop {
-            id: gradientstop2
-            position: 0.1
-            color: "#564eff"
-        }
-        GradientStop {
-            id: gradientstop3
-            position: 1.0
-            color: "#122c6e"
-        }
-
     }
 
     MouseArea {
@@ -87,51 +76,16 @@ Rectangle {
             when: mouseArea.containsMouse == true
 
             PropertyChanges {
-                target: gradientstop1
-                position: 0
-                color: "#122c6e"
+                target: buttonBorder
+                source: 'button_o.png'
             }
-
-            PropertyChanges {
-                target: gradientstop2
-                position: 0.3
-                color: "#56d5ff"
-            }
-
-            PropertyChanges {
-                target: gradientstop3
-                position: 1
-                color: "#122c6e"
-            }
-
         },
         State {
             name: "pressed"
             PropertyChanges {
-                target: gradientstop1
-                position: 0
-                color: "#56d5ff"
-            }
-
-            PropertyChanges {
-                target: gradientstop2
-                position: 1
-                color: "#122c6e"
-            }
-
-            PropertyChanges {
-                target: gradientstop3
-                position: "1"
-                color: "#122c6e"
+                target: buttonBorder
+                source: 'button_o.png'
             }
         }
-    ]
-    transitions: [
-         Transition {
-             from: ""; to: "pressed"; reversible: true
-             ParallelAnimation {
-                 ColorAnimation { duration: 30 }
-             }
-         }
     ]
 }

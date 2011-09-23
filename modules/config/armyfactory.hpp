@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // RSD
-// Copyright (C) %DATE% Benjamin Herbomez (benjamin.herbomez@gmail.com)
+// Copyright (C) 23/09/2011 Benjamin Herbomez (benjamin.herbomez@gmail.com)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -22,43 +22,27 @@
 //
 ////////////////////////////////////////////////////////////
 
-import QtQuick 1.0
-import Qt 4.7
+#ifndef ARMYFACTORY_HPP
+#define ARMYFACTORY_HPP
 
-import "../"
+#include <QObject>
+namespace cf{
 
-Rectangle {
+    class Army;
 
-    property int textSize: 42
-    width: 100
-    height: 62
+    class ArmyFactory : public QObject
+    {
+        Q_OBJECT
+    public:
+        explicit ArmyFactory(QObject *parent = 0);
 
-    anchors.fill: parent
+    signals:
 
+    public slots:
+        Army* getArmy(QString name, qint32 id);
 
-    ListView {
-        id: listArmy
-        model: cppArmyList
-        anchors.top: parent.top
-        anchors.bottom: optionReturnButton.top
-        delegate:
-            Button {
-                text    : model.modelData.name
-                textSize: optionReturnButton.textSize
-            }
-    }
-
-
-    Button {
-        id      : optionReturnButton
-        text    : qsTr("Retour")
-        textSize: parent.textSize
-
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: background.height*0.07
-
-        onClicked: main.state = "default"
-
-    }
-
-}
+    private:
+        void loadArmyUnits(Army *army);
+    };
+}//namespace cf
+#endif // ARMYFACTORY_HPP

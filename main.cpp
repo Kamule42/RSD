@@ -23,6 +23,8 @@
 ////////////////////////////////////////////////////////////
 
 #include "engine.hpp"
+#include <QDeclarativeContext>
+#include <QDeclarativeEngine>
 #include <QtGui/QApplication>
 #include <QSplashScreen>
 #include <QResource>
@@ -46,11 +48,17 @@ int main(int argc, char * argv[]){
     engine->run();
 
     QmlApplicationViewer viewer;
+
+
+    QDeclarativeContext *context = viewer.rootContext();
+        context->setContextProperty("cppArmyList",QVariant::fromValue(engine->config()->armyList()));
+
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
     //viewer.setMainQmlFile(QLatin1String(":/qml/main.qml"));
     viewer.setSource(QUrl("qrc:/qml/main.qml"));
-    //viewer.showExpanded();
-    viewer.showFullScreen();
+    viewer.showExpanded();
+    //viewer.showFullScreen();
+
 
     mSplash->finish(&viewer);
 

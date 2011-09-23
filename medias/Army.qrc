@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/Army">
+        <file alias="list.xml">Army/list.xml</file>
+        <file alias="0.xml">Army/0.xml</file>
+        <file alias="section.xml">Army/section.xml</file>
+    </qresource>
+</RCC>

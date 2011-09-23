@@ -32,7 +32,11 @@ SOURCES += main.cpp \
     modules/network/network.cpp \
     modules/network/anetworkquery.cpp \
     modules/network/httpquery.cpp \
-    modules/network/httpperiodquery.cpp
+    modules/network/httpperiodquery.cpp \
+    modules/config/config.cpp \
+    modules/config/army.cpp \
+    modules/config/armyfactory.cpp
+
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -52,8 +56,12 @@ OTHER_FILES += \
     medias/GUI.qrc\
     medias/Resources.qrc \
     medias/Resources/list.xml \
+    medias/Army.qrc \
     medias/GUI/qml/RSD/UI/Army/Army.qml \
-    medias/GUI/qml/RSD/UI/Game/Game.qml
+    medias/GUI/qml/RSD/UI/Game/Game.qml \
+    medias/Army/list.xml \
+    medias/Army/0.xml \
+    medias/Army/section.xml
 
 
 TRANSLATIONS = RSD_en.ts RSD_fr.ts
@@ -66,7 +74,10 @@ HEADERS += \
     modules/network/network.hpp \
     modules/network/anetworkquery.hpp \
     modules/network/httpquery.hpp \
-    modules/network/httpperiodquery.hpp
+    modules/network/httpperiodquery.hpp \
+    modules/config/config.hpp \
+    modules/config/army.hpp \
+    modules/config/armyfactory.hpp
 
 
 QT += network xml
