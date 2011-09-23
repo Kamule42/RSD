@@ -22,33 +22,31 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef ARMYFACTORY_HPP
-#define ARMYFACTORY_HPP
-
-#include <QObject>
-
-class QDomElement;
+#include "unit.hpp"
 
 namespace cf{
+    Unit::Unit(QObject *parent) :  QObject(parent){
+        this->m_pv = -1;
+        this->m_mv = -1;
+        this->m_dx = -1;
+        this->m_st = -1;
+        this->m_atk = -1;
+        this->m_ml = -1;
+    }
 
-    class Army;
-    class Unit;
+    QString Unit::name(){ return m_name;}
+    qint32 Unit::pv(){ return m_pv;}
+    qint32 Unit::mv(){ return m_mv;}
+    qint32 Unit::dx(){ return m_dx;}
+    qint32 Unit::st(){ return m_st;}
+    qint32 Unit::atk(){ return m_atk;}
+    qint32 Unit::ml(){ return m_ml;}
 
-    class ArmyFactory : public QObject
-    {
-        Q_OBJECT
-        public:
-            explicit ArmyFactory(QObject *parent = 0);
-
-        signals:
-
-        public slots:
-            Army* getArmy(QString name, qint32 id);
-
-        private:
-            void loadArmyUnits(Army *army);
-
-            Unit* getCaracBase(QDomElement *caracNode);
-    };
-}//namespace cf
-#endif // ARMYFACTORY_HPP
+    void Unit::setName(QString name){ m_name = name;}
+    void Unit::setPv(qint32 pv){ m_pv = pv;}
+    void Unit::setMv(qint32 mv){ m_mv = mv;}
+    void Unit::setDx(qint32 dx){ m_dx = dx;}
+    void Unit::setSt(qint32 st){ m_st = st;}
+    void Unit::setAtk(qint32 atk){ m_atk = atk;}
+    void Unit::setMl(qint32 ml){ m_ml = ml;}
+}

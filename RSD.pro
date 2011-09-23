@@ -35,7 +35,9 @@ SOURCES += main.cpp \
     modules/network/httpperiodquery.cpp \
     modules/config/config.cpp \
     modules/config/army.cpp \
-    modules/config/armyfactory.cpp
+    modules/config/armyfactory.cpp \
+    modules/config/unit.cpp \
+    modules/config/utils.cpp
 
 
 # Please do not modify the following two lines. Required for deployment.
@@ -77,7 +79,9 @@ HEADERS += \
     modules/network/httpperiodquery.hpp \
     modules/config/config.hpp \
     modules/config/army.hpp \
-    modules/config/armyfactory.hpp
+    modules/config/armyfactory.hpp \
+    modules/config/unit.hpp \
+    modules/config/utils.hpp
 
 
 QT += network xml

@@ -22,33 +22,23 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef ARMYFACTORY_HPP
-#define ARMYFACTORY_HPP
+#ifndef UTILS_HPP
+#define UTILS_HPP
 
 #include <QObject>
 
 class QDomElement;
 
 namespace cf{
-
-    class Army;
-    class Unit;
-
-    class ArmyFactory : public QObject
+    class Utils  : public QObject
     {
         Q_OBJECT
-        public:
-            explicit ArmyFactory(QObject *parent = 0);
 
-        signals:
+    public:
+        explicit Utils(QObject *parent = 0);
 
-        public slots:
-            Army* getArmy(QString name, qint32 id);
-
-        private:
-            void loadArmyUnits(Army *army);
-
-            Unit* getCaracBase(QDomElement *caracNode);
+        static QDomElement openXml(QString fileName);
     };
-}//namespace cf
-#endif // ARMYFACTORY_HPP
+
+}
+#endif // UTILS_HPP

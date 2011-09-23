@@ -22,33 +22,25 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef ARMYFACTORY_HPP
-#define ARMYFACTORY_HPP
+#include "utils.hpp"
 
-#include <QObject>
-
-class QDomElement;
+#include <QtXml/QDomDocument>
+#include <QFile>
 
 namespace cf{
+    Utils::Utils(QObject *parent) : QObject(parent){
+    }
 
-    class Army;
-    class Unit;
-
-    class ArmyFactory : public QObject
-    {
-        Q_OBJECT
-        public:
-            explicit ArmyFactory(QObject *parent = 0);
-
-        signals:
-
-        public slots:
-            Army* getArmy(QString name, qint32 id);
-
-        private:
-            void loadArmyUnits(Army *army);
-
-            Unit* getCaracBase(QDomElement *caracNode);
-    };
-}//namespace cf
-#endif // ARMYFACTORY_HPP
+    QDomElement Utils::openXml(QString fileName){
+        QDomDocument doc("docXml");
+        QFile file(fileName);
+        if(!file.open( QIODevice::ReadOnly ))
+            throw tr("Erreur lors de l'a l'ouverture du fichier");
+        if(!doc.setContent(&file)){
+           file.close();
+           throw tr("Erreur lors du parsage");
+        }
+        file.close();
+        return doc.documentElement();
+    }
+}

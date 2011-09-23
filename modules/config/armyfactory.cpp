@@ -24,7 +24,13 @@
 
 #include "armyfactory.hpp"
 #include "army.hpp"
+#include "unit.hpp"
+
+#include <QtXml/QDomDocument>
 #include "utils.hpp"
+
+
+#include <QDebug>
 
 namespace cf{
     ArmyFactory::ArmyFactory(QObject *parent) : QObject(parent){
@@ -34,44 +40,66 @@ namespace cf{
 
     Army* ArmyFactory::getArmy(QString name, qint32 id){
         Army *r = new Army(name,id);
-
+        this->loadArmyUnits(r);
         return r;
     }
 
      void ArmyFactory::loadArmyUnits(Army *army){
+        QDomElement root;
+        try{
+            root = Utils::openXml(":/Army/"+QString::number(army->id())+".xml");
+        }
+        catch(...){
+            return;
+        }
 
-       QDomDocument doc("docXml");
-       QFile file(":/Army/"+QString::number(army->id())+".xml");
-       if(!file.open( QIODevice::ReadOnly ))
-           throw tr("Erreur lors de l'a l'ouverture du fichier");
-       if(!doc.setContent(&file)){
-          file.close();
-          throw tr("Erreur lors du parsage");
-       }
+        if(root.tagName() != "army")
+            throw tr("Fichier mal formaté");
 
-       QDomElement root = doc.documentElement();
-       if(root.tagName() != "list")
-           throw tr("Fichier mal formaté");
-       QDomNode n = root.firstChild();
-         /*while(!n.isNull()){
-             QDomElement e = n.toElement();
-             if(e.tagName() == "army" && e.nodeType() == QDomNode::ElementNode && e.childNodes().count()  == 1){
-                 QString ids =  e.attribute("id","");
-                 if(ids == "") //No id, and we need it !
-                     continue;
+        QDomNode n = root.firstChild();
 
-                 bool ok;
-                 qint32 id = ids.toInt(&ok);
-                 if(!ok) //it's not and Int
-                     continue;
+        Unit *caracBase;
 
-                 this->m_mArmyList.push_back( factory->getArmy(e.text(),id));
-             }
+        while(!n.isNull()){
+            QDomElement e = n.toElement();
+            if(e.tagName() == "caracBase"){
+                caracBase = this->getCaracBase(&e);
+            }
+            else if(e.tagName() == "unit");
 
              n = n.nextSibling();
-         }*/
+         }
 
-       file.close();
+     }
+
+     Unit* ArmyFactory::getCaracBase(QDomElement *caracNode){
+        Unit *r = new Unit();
+        QDomNode n = caracNode->firstChild();
+        while(!n.isNull()){
+            QDomElement e = n.toElement();
+
+            QString name   =  e.attribute("name","");
+            bool ok;
+            qint32 v            = e.attribute("value","-1").toInt(&ok);
+
+            if(ok){
+                if(name == "pv")
+                    r->setPv(v);
+                else if(name == "mv")
+                    r->setMv(v);
+                else if(name == "dx")
+                    r->setDx(v);
+                else if(name == "st")
+                    r->setSt(v);
+                else if(name == "atk")
+                    r->setAtk(v);
+                else if(name == "ml")
+                    r->setMl(v);
+            }
+            n = n.nextSibling();
+        }
+
+        return r;
      }
 
 }//namespace cf

@@ -4,6 +4,7 @@
         <carac name="mv" value="6" />
         <carac name="dx" value="4" />
         <carac name="st" value="3" />
+        <carac name="atk" value="1" />
         <carac name="ml" value="0" />
     </caracBase>
     <unit id="0" type="0">
@@ -12,6 +13,7 @@
             <carac name="pv" value="3" />
             <carac name="dx" value="6" />
             <carac name="st" value="4" />
+            <carac name="st" value="3" />
         </caracs>
     </unit>
 </army>

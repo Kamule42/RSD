@@ -23,9 +23,13 @@
 ////////////////////////////////////////////////////////////
 
 #include "config.hpp"
-#include <QFile>
-#include <QtXml/QDomDocument>
 #include "armyfactory.hpp"
+
+
+#include <QtXml/QDomDocument>
+#include "utils.hpp"
+
+#include <QDebug>
 
 namespace cf{
     Config::Config(){
@@ -37,17 +41,14 @@ namespace cf{
     }
 
     void Config::init(){
-        QDomDocument doc("docXml");
-        QFile file(":/Army/list.xml");
-        if(!file.open( QIODevice::ReadOnly ))
-            throw tr("Erreur lors de l'a l'ouverture du fichier");
-        if(!doc.setContent(&file)){
-           file.close();
-           throw tr("Erreur lors du parsage");
+        QDomElement root;
+        try{
+            root = Utils::openXml(":/Army/list.xml");
         }
-        file.close();
+        catch(...){
+            return;
+        }
 
-        QDomElement root = doc.documentElement();
         if(root.tagName() != "list")
             throw tr("Fichier mal formaté");
         QDomNode n = root.firstChild();
@@ -72,6 +73,5 @@ namespace cf{
             n = n.nextSibling();
         }
 
-        file.close();
     }
 }//namespace cf
