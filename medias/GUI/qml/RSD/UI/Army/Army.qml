@@ -23,42 +23,84 @@
 ////////////////////////////////////////////////////////////
 
 import QtQuick 1.0
-import Qt 4.7
+import QtDesktop 0.1
+
+import com.rsd.config 1.0
 
 import "../"
 
 Rectangle {
 
     property int textSize: 42
-    width: 100
-    height: 62
+
 
     anchors.fill: parent
 
 
-    ListView {
-        id: listArmy
-        model: cppArmyList
+    Rectangle{
+
+        width: 200
+        height : 100
+
         anchors.top: parent.top
-        anchors.bottom: optionReturnButton.top
-        delegate:
-            Button {
-                text    : model.modelData.name
-                textSize: optionReturnButton.textSize
-            }
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        id:armyLeftPanel
+
+        /*ListView {
+            id: listArmy
+            model: cppArmyList
+            anchors.top: parent.top
+            anchors.bottom: optionReturnButton.top
+            delegate:
+                Button {
+                    text    : model.modelData.name
+                    onClicked: {
+                        listUnits.model = model.modelData.units;
+                    }
+                }
+        }*/
+
+        ComboBox{
+            anchors.top: parent.top
+            /*model:cppArmyList*/
+            model: ListModel {
+                     ListElement { name: "Helsinki" }
+                     ListElement { name: "Oulu" }
+                     ListElement { name: "Rovaniemi" }
+                     ListElement { name: "Tampere" }
+                     ListElement { name: "Vaasa" }
+                 }
+        }
+
+
+        Button {
+            id      : optionReturnButton
+            text    : qsTr("Retour")
+
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: background.height*0.07
+
+            onClicked: main.state = "default"
+
+        }
     }
 
-
-    Button {
-        id      : optionReturnButton
-        text    : qsTr("Retour")
-        textSize: parent.textSize
-
+    Rectangle{
+        anchors.top: parent.top
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: background.height*0.07
+        anchors.left: armyLeftPanel.right
+        color : "red"
+        width : 100
 
-        onClicked: main.state = "default"
-
+        ListView {
+            id: listUnits
+            anchors.fill: parent
+            delegate:
+                Button {
+                    text    : model.modelData.name
+                }
+        }
     }
 
 }

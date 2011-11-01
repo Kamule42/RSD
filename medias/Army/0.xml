@@ -3,17 +3,70 @@
         <carac name="pv" value="1" />
         <carac name="mv" value="6" />
         <carac name="dx" value="4" />
+        <carac name="pr" value="3" />
         <carac name="st" value="3" />
         <carac name="atk" value="1" />
         <carac name="ml" value="0" />
     </caracBase>
-    <unit id="0" type="0">
-        <name>Prince r�gent</name>
+    <!-- Prince régent -->
+    <unit>
+        <id>0</id>
+        <name>Prince régent</name>
+        <type>0</type>
         <caracs>
             <carac name="pv" value="3" />
             <carac name="dx" value="6" />
+            <carac name="pr" value="5" />
             <carac name="st" value="4" />
-            <carac name="st" value="3" />
+            <carac name="atk" value="3" />
+        </caracs>
+    </unit>
+    <!--Archimage -->
+    <unit>
+        <id>1</id>
+        <name>Archimage</name>
+        <type>0</type>
+        <caracs>
+            <carac name="pv" value="3" />
+            <carac name="ml" value="3" />
+        </caracs>
+    </unit>
+    <!-- Maréchale -->
+    <unit>
+        <id>2</id>
+        <name>Maréchal</name>
+        <type>1</type>
+        <caracs>
+            <carac name="pv" value="2" />
+            <carac name="dx" value="5" />
+            <carac name="pr" value="5" />
+            <carac name="st" value="4" />
+            <carac name="atk" value="2" />
+        </caracs>
+    </unit>
+    <!-- Sorcier -->
+    <unit>
+    <id>3</id>
+        <name>Sorcier</name>
+        <type>1</type>
+        <caracs>
+            <carac name="pv" value="2" />
+            <carac name="ml" value="1" />
+        </caracs>
+    </unit>
+    <!-- Lancier -->
+    <unit>
+    <id>4</id>
+        <name>Lancier</name>
+        <type>2</type>
+    </unit>
+    <!--Archer -->
+    <unit>
+    <id>5</id>
+        <name>Archer</name>
+        <type>2</type>
+        <caracs>
+            <carac name="pr" value="4" />
         </caracs>
     </unit>
 </army>

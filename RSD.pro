@@ -63,7 +63,9 @@ OTHER_FILES += \
     medias/GUI/qml/RSD/UI/Game/Game.qml \
     medias/Army/list.xml \
     medias/Army/0.xml \
-    medias/Army/section.xml
+    medias/Army/section.xml \
+    medias/Army/3.xml \
+    medias/GUI/qml/RSD/UI/ComboBox.qml
 
 
 TRANSLATIONS = RSD_en.ts RSD_fr.ts
@@ -87,3 +89,4 @@ HEADERS += \
 QT += network xml
 
 CONFIG += debug
+

@@ -23,7 +23,7 @@
 ////////////////////////////////////////////////////////////
 
 import QtQuick 1.0
-import Qt 4.7
+import QtDesktop 0.1
 
 import "../JS/main.js" as Controler
 import "../"
@@ -38,26 +38,22 @@ Column {
     Button {
         id      : optionGameButton
         text    : qsTr("Jeu")
-        textSize: parent.textSize
         onClicked: option.state="game"
     }
 
     Button {
         id      : optionGraphicButton
         text    : qsTr("Graphique")
-        textSize: parent.textSize
     }
 
     Button {
         id      : optionAudioButton
         text    : qsTr("Audio")
-        textSize: parent.textSize
     }
 
     Button {
         id      : optionReturnButton
         text    : qsTr("Retour")
-        textSize: parent.textSize
         onClicked: Controler.setState("default")
     }
 

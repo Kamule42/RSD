@@ -38,4 +38,23 @@ namespace cf{
     qint32 Army::id(){
         return this->m_id;
     }
+
+    QVector<Unit*>  Army::units(){
+        return this->m_units;
+    }
+
+    QList<QObject*>  Army::unitsObj(){
+        QList<QObject*> r;
+        int i, j = this->m_units.size();
+        for(i=0;i < j;++i){
+            r.push_back(reinterpret_cast<QObject *>(this->m_units[i]));
+        }
+        return r;
+    }
+
+    void Army::addUnit(Unit *u){
+        this->m_units.push_back(u);
+        emit unitsChanged();
+    }
+
 }

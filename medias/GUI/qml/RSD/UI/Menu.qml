@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-import QtQuick 1.0
-import Qt 4.7
+import QtQuick 1.1
 
 import "JS/main.js" as Controler
 
@@ -34,27 +33,23 @@ Column {
     Button {
         id      : newGameButton
         text    : qsTr("Jouer")
-        textSize: parent.textSize
     }
 
     Button{
         id      : manageArmyButton
         text    : qsTr("Gérer mes armées")
-        textSize: parent.textSize
         onClicked  : Controler.setState("army")
     }
 
     Button {
         id              : optionButton
         text           : qsTr("Options")
-        textSize    : parent.textSize
         onClicked  : Controler.setState("option")
     }
 
     Button {
         id          : exitButton
         text        : qsTr("Quitter")
-        textSize: parent.textSize
         onClicked   : Qt.quit()
     }
 }

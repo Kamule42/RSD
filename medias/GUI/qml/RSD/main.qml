@@ -37,23 +37,25 @@ Item{
     state   : "default"
 
     Rectangle {
-        id: background
-        x: 0
-        y: 0
-        anchors.fill                     : parent;
-        color                             : "grey"
-        anchors.rightMargin        : 0
+        id                      : background
+        x                       : 0
+        y                       : 0
+        anchors.fill            : parent;
+        color                   : "grey"
+        anchors.rightMargin     : 0
         anchors.bottomMargin    : 0
-        anchors.leftMargin          : 0
-        anchors.topMargin          : 0
+        anchors.leftMargin      : 0
+        anchors.topMargin       : 0
+
+        property int textSize   : background.height * 0.025
 
 
         Title{
-            id                                   : title
-            textSize                          : parent.height * 0.07
-            anchors.top                     : parent.top
+            id                          : title
+            textSize                    : parent.height * 0.07
+            anchors.top                 : parent.top
             anchors.topMargin           : 0
-            anchors.horizontalCenter  : parent.horizontalCenter
+            anchors.horizontalCenter    : parent.horizontalCenter
         }
 
         Rectangle {
@@ -79,8 +81,6 @@ Item{
                 id      : menu
                 clip    : false
 
-                textSize: parent.height * 0.04
-
                 anchors.fill: parent
 
                anchors.top           : parent.top
@@ -98,7 +98,6 @@ Item{
             Option{
                     id      : option
                     clip    : false
-                    textSize: parent.height * 0.04
                     opacity : 0
 
                    anchors.top           : parent.top

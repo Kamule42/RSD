@@ -1,0 +1,34 @@
+<army id="0">
+    <caracBase>
+        <carac name="pv" value="1" />
+        <carac name="mv" value="7" />
+        <carac name="dx" value="5" />
+        <carac name="pr" value="3" />
+        <carac name="st" value="2" />
+        <carac name="atk" value="1" />
+        <carac name="ml" value="0" />
+    </caracBase>
+    <!--Général elfique -->
+    <unit>
+        <id>0</id>
+        <name>Général elfique</name>
+        <type>0</type>
+        <caracs>
+            <carac name="pv" value="3" />
+            <carac name="dx" value="7" />
+            <carac name="pr" value="6" />
+            <carac name="st" value="3" />
+            <carac name="atk" value="3" />
+        </caracs>
+    </unit>
+    <!--Archonte -->
+    <unit>
+        <id>1</id>
+        <name>Archonte</name>
+        <type>0</type>
+        <caracs>
+            <carac name="pv" value="3" />
+            <carac name="ml" value="3" />
+        </caracs>
+    </unit>
+</army>

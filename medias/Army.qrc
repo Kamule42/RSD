@@ -3,5 +3,6 @@
         <file alias="list.xml">Army/list.xml</file>
         <file alias="0.xml">Army/0.xml</file>
         <file alias="section.xml">Army/section.xml</file>
+        <file alias="3.xml">Army/3.xml</file>
     </qresource>
 </RCC>

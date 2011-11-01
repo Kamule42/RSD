@@ -29,12 +29,10 @@ Item {
     id: container
 
     property string text: "Button"
-    property int textSize: 10
-
     signal clicked
 
-    width   : 250
-    height  : textSize*1.5
+    width   : Math.max(200,buttonLabel.width*1.3)
+    height  : background.textSize*1.5
     smooth  : true
 
     /*border {
@@ -44,12 +42,12 @@ Item {
 
     BorderImage {
         id : buttonBorder
-         width:parent.width
-         height: parent.height
-         border { left: 20; top: 20; right: 9; bottom: 9 }
-         horizontalTileMode: BorderImage.Repeat
-         verticalTileMode: BorderImage.Repeat
-         source: "button.png"
+        width:parent.width
+        height: parent.height
+        border { left: 20; top: 20; right: 9; bottom: 9 }
+        horizontalTileMode: BorderImage.Repeat
+        verticalTileMode: BorderImage.Repeat
+        source: "button.png"
      }
 
 
@@ -58,7 +56,7 @@ Item {
         text: container.text
         anchors.centerIn: container
         color: "white"
-        font.pixelSize: parent.textSize
+        font.pixelSize: background.textSize
     }
 
     MouseArea {

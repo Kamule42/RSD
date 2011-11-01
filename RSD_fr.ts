@@ -5,45 +5,70 @@
     <name>Menu</name>
     <message>
         <source>Find game</source>
-        <translation type="unfinished">Trouver une partie</translation>
+        <translation type="obsolete">Trouver une partie</translation>
     </message>
     <message>
         <source>Manage army</source>
-        <translation type="unfinished">Gérer mon armée</translation>
+        <translation type="obsolete">Gérer mon armée</translation>
     </message>
     <message>
         <source>Option</source>
-        <translation type="unfinished">Option</translation>
+        <translation type="obsolete">Option</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished">Quitter</translation>
+        <translation type="obsolete">Quitter</translation>
     </message>
 </context>
 <context>
     <name>Option</name>
     <message>
         <source>Game</source>
-        <translation type="unfinished">Jeu</translation>
+        <translation type="obsolete">Jeu</translation>
     </message>
     <message>
         <source>Graphic</source>
-        <translation type="unfinished">Graphique</translation>
+        <translation type="obsolete">Graphique</translation>
     </message>
     <message>
         <source>Audio</source>
-        <translation type="unfinished">Audio</translation>
+        <translation type="obsolete">Audio</translation>
     </message>
     <message>
         <source>Return</source>
-        <translation type="unfinished">Retour</translation>
+        <translation type="obsolete">Retour</translation>
     </message>
 </context>
 <context>
     <name>OptionGame</name>
     <message>
         <source>Return</source>
-        <translation type="unfinished">Retour</translation>
+        <translation type="obsolete">Retour</translation>
+    </message>
+</context>
+<context>
+    <name>cf::ArmyFactory</name>
+    <message>
+        <source>Fichier mal formaté</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>cf::Config</name>
+    <message>
+        <source>Fichier mal formaté</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>cf::Utils</name>
+    <message>
+        <source>Erreur lors de l&apos;a l&apos;ouverture du fichier</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Erreur lors du parsage</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

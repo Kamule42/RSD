@@ -29,14 +29,41 @@
 #include <QtXml/QDomDocument>
 #include "utils.hpp"
 
-
 #include <QDebug>
 
 namespace cf{
     ArmyFactory::ArmyFactory(QObject *parent) : QObject(parent){
-
+        this->loadSectionNames();
     }
 
+
+     void ArmyFactory::loadSectionNames(){
+         QDomElement root;
+         try{
+             root = Utils::openXml(":/Army/section.xml");
+         }
+         catch(...){
+             return;
+         }
+
+         if(root.tagName() != "sections")
+             throw tr("Fichier mal formaté");
+
+         QDomNode n = root.firstChild();
+
+         while(!n.isNull()){
+             QDomElement e = n.toElement();
+             if(e.tagName() == "section"){
+                 bool ok;
+                 qint32 id =e.attribute("id","-1").toInt(&ok);
+                 if(!ok)
+                     id = -1;
+                 this->m_sectionsNames.insert(id,e.text());
+             }
+
+              n = n.nextSibling();
+          }
+     }
 
     Army* ArmyFactory::getArmy(QString name, qint32 id){
         Army *r = new Army(name,id);
@@ -63,17 +90,21 @@ namespace cf{
         while(!n.isNull()){
             QDomElement e = n.toElement();
             if(e.tagName() == "caracBase"){
-                caracBase = this->getCaracBase(&e);
+                caracBase = this->getCarac(&e);
             }
-            else if(e.tagName() == "unit");
+            else if(e.tagName() == "unit"){
+                army->addUnit(this->getUnit(&e,caracBase));
+            }
 
              n = n.nextSibling();
          }
 
      }
 
-     Unit* ArmyFactory::getCaracBase(QDomElement *caracNode){
-        Unit *r = new Unit();
+     Unit* ArmyFactory::getCarac(QDomElement *caracNode, Unit *def){
+        Unit *r =def;
+        if(r == 0)
+             r = new Unit();
         QDomNode n = caracNode->firstChild();
         while(!n.isNull()){
             QDomElement e = n.toElement();
@@ -95,6 +126,28 @@ namespace cf{
                     r->setAtk(v);
                 else if(name == "ml")
                     r->setMl(v);
+            }
+            n = n.nextSibling();
+        }
+
+        return r;
+     }
+
+     Unit* ArmyFactory::getUnit(QDomElement *unitNode, Unit* def){
+         Unit *r = new Unit(def);
+        QString type = "";
+
+        QDomNode n = unitNode->firstChild();
+        while(!n.isNull()){
+            QDomElement e = n.toElement();
+            if(e.tagName() == "id")
+                r->setId(e.text().toInt());
+            else if(e.tagName() == "name")
+                r->setName(e.text());
+            else if(e.tagName() == "type")
+                type = e.text();
+            else if(e.tagName() == "caracs"){
+                this->getCarac(&e,r);
             }
             n = n.nextSibling();
         }

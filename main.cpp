@@ -23,6 +23,10 @@
 ////////////////////////////////////////////////////////////
 
 #include "engine.hpp"
+
+#include "modules/config/unit.hpp"
+
+#include <QtDeclarative>
 #include <QDeclarativeContext>
 #include <QDeclarativeEngine>
 #include <QtGui/QApplication>
@@ -35,6 +39,7 @@
 #include <QDebug>
 
 void loadResources();
+void registerTypes();
 
 int main(int argc, char * argv[]){
     QApplication app(argc, argv);
@@ -52,6 +57,8 @@ int main(int argc, char * argv[]){
 
     QDeclarativeContext *context = viewer.rootContext();
         context->setContextProperty("cppArmyList",QVariant::fromValue(engine->config()->armyList()));
+
+     registerTypes();
 
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
     //viewer.setMainQmlFile(QLatin1String(":/qml/main.qml"));
@@ -95,4 +102,8 @@ void loadResources(){
 
      file.close();
 
+}
+
+void registerTypes(){
+    qmlRegisterType<cf::Unit>("com.rsd.config", 1, 0, "Unit");
 }

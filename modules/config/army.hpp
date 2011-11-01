@@ -27,29 +27,39 @@
 
 #include <QObject>
 #include <QString>
+ #include <QVector>
+
 
 namespace cf{
+
+    class Unit;
+
     class Army : public QObject{
         Q_OBJECT
         Q_PROPERTY(QString name READ name NOTIFY nameChanged)
         Q_PROPERTY(QString id READ id NOTIFY idChanged)
+        Q_PROPERTY(QList<QObject*> units READ unitsObj NOTIFY unitsChanged)
 
         private:
             QString m_name;
             qint32 m_id;
+            QVector<Unit*> m_units;
 
         public:
             explicit Army(QString name, qint32 id);
 
             Q_INVOKABLE QString name();
             Q_INVOKABLE qint32 id();
+            Q_INVOKABLE QVector<Unit*> units();
+            Q_INVOKABLE QList<QObject*> unitsObj();
 
         signals:
              void nameChanged();
              void idChanged();
+             void unitsChanged();
 
         public slots:
-
+             void addUnit(Unit *u);
     };
 }
 #endif // ARMY_HPP

@@ -23,7 +23,7 @@
 ////////////////////////////////////////////////////////////
 
 import QtQuick 1.0
-import Qt 4.7
+import QtDesktop 0.1
 
 import "../"
 
@@ -34,7 +34,6 @@ Column {
     Button {
         id      : optionReturnButton
         text    : qsTr("Retour")
-        textSize: parent.textSize
         onClicked: {option.state="default"}
     }
 

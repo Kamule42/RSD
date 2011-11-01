@@ -26,6 +26,7 @@
 #define ARMYFACTORY_HPP
 
 #include <QObject>
+#include <QMap>
 
 class QDomElement;
 
@@ -37,6 +38,9 @@ namespace cf{
     class ArmyFactory : public QObject
     {
         Q_OBJECT
+
+        private:
+            QMap<qint32,QString> m_sectionsNames;
         public:
             explicit ArmyFactory(QObject *parent = 0);
 
@@ -46,9 +50,11 @@ namespace cf{
             Army* getArmy(QString name, qint32 id);
 
         private:
+            void loadSectionNames();
             void loadArmyUnits(Army *army);
 
-            Unit* getCaracBase(QDomElement *caracNode);
+            Unit* getCarac(QDomElement *caracNode, Unit* def = 0);
+            Unit* getUnit(QDomElement *unitNode, Unit* def);
     };
 }//namespace cf
 #endif // ARMYFACTORY_HPP
