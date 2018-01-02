@@ -15,7 +15,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="dessin.svg">
+   sodipodi:docname="dessin.svg"
+   inkscape:export-filename="D:\A372838\perso\path4181-9.png"
+   inkscape:export-xdpi="7.4577332"
+   inkscape:export-ydpi="7.4577332">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -25,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.175"
-     inkscape:cx="-140.61135"
-     inkscape:cy="288.65067"
+     inkscape:zoom="0.12374369"
+     inkscape:cx="223.62422"
+     inkscape:cy="532.57117"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -140,7 +143,7 @@
        sodipodi:nodetypes="ccccccc" />
     <path
        style="fill:#212121;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 407.83894,831.05658 10,148.57143 111.85637,-0.23765 3.8579,-15.47664 -47.14285,-22.85714 -24.28571,-108.57142 z"
+       d="m 407.83894,831.05658 10,148.57143 111.85637,-0.23765 3.8579,-15.47664 -59.99999,-25.71428 -11.42857,-105.71428 z"
        id="path4181-9"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccccc" />
